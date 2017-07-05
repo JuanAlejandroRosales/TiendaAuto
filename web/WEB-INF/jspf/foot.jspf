@@ -1,0 +1,13 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<!--Pie content-->
+<footer class="footer">
+    <div class="container">
+        <p>
+            HANGUL SAC - Universidad de Ciencias y Humanidades 2017.
+        </p>                
+        <ul class="footer-links">
+            <li><a href="http://www.uch.edu.pe/">Web Site</a></li>                    
+        </ul>
+    </div>
+</footer>

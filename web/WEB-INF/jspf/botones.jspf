@@ -1,0 +1,10 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="container" style="padding-top: 1em;">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default">Categoria</button>
+    <button type="button" class="btn btn-default">Productos</button>
+    <button type="button" class="btn btn-default">Reportes</button>
+    <button type="button" class="btn btn-default">Perfil</button>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/assets/css/bootstrap_2.2.2.min.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/assets/css/docs.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/demo.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/estilos.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/assets/js/google-code-prettify/prettify.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/ui.jqgrid.css" rel="stylesheet" type="text/css"/>

@@ -1,0 +1,8 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/bootstrap-3.3.7/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/bootstrap-datetimepicker-4.17.47/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/free-jqgrid-4.14.1-pre/ui.jqgrid.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/estilos.css" rel="stylesheet" type="text/css"/>

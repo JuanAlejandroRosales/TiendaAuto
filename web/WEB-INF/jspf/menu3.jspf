@@ -1,0 +1,33 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="" style="padding-top: 1em;">
+  <ul class="nav nav-pills nav-stacked" style="max-width: 200px;">
+    <li id="bt0"><a href="http://<%=request.getServerName() + ':' + 
+                               request.getServerPort() + 
+                               request.getContextPath()%>/jsp/main3.jsp"><span class="glyphicon glyphicon-home"></span> HOME</a></li>  
+    <li id="bt1"><a href="http://<%=request.getServerName() + ':' + 
+                               request.getServerPort() + 
+                               request.getContextPath()%>/jsp/ClientesListado.jsp"><i class="fa fa-users" aria-hidden="true"></i> CLIENTES</a></li>
+    <li id="bt2"><a href="http://<%=request.getServerName() + ':' + 
+                               request.getServerPort() + 
+                               request.getContextPath()%>/ServletAutoPaginar"><i class="fa fa-car" aria-hidden="true"></i> AUTOS</a></li>
+    <li id="bt3"><a href="http://<%=request.getServerName() + ':' + 
+                               request.getServerPort() + 
+                               request.getContextPath()%>/jsp/RealizarVentas.jsp"><span class="glyphicon glyphicon-list-alt"></span> VENTAS</a></li>
+    <li id="bt4"><a href="http://<%=request.getServerName() + ':' + 
+                               request.getServerPort() + 
+                               request.getContextPath()%>/jsp/ProveedoresListado.jsp"><span class="glyphicon glyphicon-briefcase"></span> PROVEEDORES</a></li>
+    <li id="bt5"><a href="http://<%=request.getServerName() + ':' + 
+                               request.getServerPort() + 
+                               request.getContextPath()%>/jsp/RealizarCompras.jsp"><span class="glyphicon glyphicon-file"></span> COMPRAS</a></li>
+    <li id="bt6"><a href="http://<%=request.getServerName() + ':' + 
+                               request.getServerPort() + 
+                               request.getContextPath()%>/jsp/Reportes.jsp"><span class="glyphicon glyphicon-file"></span> REPORTES</a></li>
+    <li id="bt7"><a href="http://<%=request.getServerName() + ':' + 
+                               request.getServerPort() + 
+                               request.getContextPath()%>/jsp/PerfilNuevo.jsp"><span class="glyphicon glyphicon-user"></span> USUARIOS</a></li>
+    <li id="bt8"><a href="http://<%=request.getServerName() + ':' + 
+                               request.getServerPort() + 
+                               request.getContextPath()%>/jsp/CopiadeSeguridad.jsp"><span class="glyphicon glyphicon-user"></span> BACKUP</a></li>
+  </ul>
+</div>

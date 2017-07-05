@@ -1,0 +1,65 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="container" style="padding-top: 1em;">
+<table class="table table-bordered table table-hover" style="width:800px">
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Marca</th>
+      <th>Módelo</th>
+      <th>Color</th>
+      <th>Precio</th>
+      <th>Stock</th>
+      <th>Estado</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A001</td>
+      <td>Hyunday</td>
+      <td>Corolla</td>
+      <td>Blanco</td>
+      <td>$20 000</td>
+      <td>54</td>
+      <td>Activo</td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-tag"></span> Editar</a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+      </td>
+    </tr>
+    <tr>
+      <td>A002</td>
+      <td>Toyota</td>
+      <td>Yaris</td>
+      <td>Plomo</td>
+      <td>$50 000</td>
+      <td>45</td>
+      <td>Activo</td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-tag"></span> Editar</a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+      </td>
+    </tr>
+    <tr>
+      <td>A003</td>
+      <td>Nissan</td>
+      <td>Raw 4</td>
+      <td>Rojo</td>
+      <td>$45 000</td>
+      <td>50</td>
+      <td>Activo</td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-tag"></span> Editar</a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

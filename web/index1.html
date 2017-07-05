@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>http://stackoverflow.com/q/29729911/315935</title>
+    <meta name="author" content="Oleg Kiriljuk">
+    <link href="css/jquery-ui_1.12.1.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap-3.3.7.css" rel="stylesheet" type="text/css"/>
+    <link href="css/font-awesome_4.7.0.css" rel="stylesheet" type="text/css"/>
+    <link href="css/ui.jqgrid.css" rel="stylesheet" type="text/css"/>
+    <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bootstrap-datetimepicker-standalone.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .ui-datepicker { font-size: 76.39%; }
+        .ui-datepicker select.ui-datepicker-year,
+        .ui-datepicker select.ui-datepicker-month {
+            color: black
+        }
+    </style>
+    <script src="js/jquery_1.12.4.js" type="text/javascript"></script>
+    <script src="js/jquery-ui_1.12.1.js" type="text/javascript"></script>
+    <script src="js/grid.locale-es.js" type="text/javascript"></script>
+    <script>
+        $.jgrid = $.jgrid || {};
+        $.jgrid.no_legacy_api = true;
+    </script>
+    <script src="js/jquery.jqgrid.src.js" type="text/javascript"></script>
+    <script src="js/bootstrap_3.3.7.js" type="text/javascript"></script>
+    <script src="js/moment.js" type="text/javascript"></script>
+    <script src="js/moment-with-locales.js" type="text/javascript"></script>
+    <script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+    <script>
+    //<![CDATA[
+    /*global $ */
+    /*jslint browser: true */
+    $(function () {
+        
+      
+        "use strict";
+        var mydata = [
+                { id: "10",  invdate: "2007-10-01", name: "test",   note: "note",   amount: "",       tax: "",      closed: true,  ship_via: "TN", total: "" },
+                { id: "20",  invdate: "2007-10-02", name: "test2",  note: "note2",  amount: "300.00", tax: "20.00", closed: false, ship_via: "FE", total: "320.00" },
+                { id: "30",  invdate: "2007-09-01", name: "test3",  note: "note3",  amount: "400.00", tax: "30.00", closed: false, ship_via: "FE", total: "430.00" },
+                { id: "40",  invdate: "2007-10-04", name: "test4",  note: "note4",  amount: "200.00", tax: "10.00", closed: true,  ship_via: "TN", total: "210.00" },
+                { id: "50",  invdate: "2007-10-31", name: "test5",  note: "note5",  amount: "300.00", tax: "20.00", closed: false, ship_via: "FE", total: "320.00" },
+                { id: "60",  invdate: "2007-09-06", name: "test6",  note: "note6",  amount: "400.00", tax: "30.00", closed: false, ship_via: "FE", total: "430.00" },
+                { id: "70",  invdate: "2007-10-04", name: "test7",  note: "note7",  amount: "200.00", tax: "10.00", closed: true,  ship_via: "TN", total: "210.00" },
+                { id: "80",  invdate: "2007-10-03", name: "test8",  note: "note8",  amount: "300.00", tax: "20.00", closed: false, ship_via: "FE", total: "320.00" },
+                { id: "90",  invdate: "2007-09-01", name: "test9",  note: "note9",  amount: "400.00", tax: "30.00", closed: false, ship_via: "TN", total: "430.00" },
+                { id: "100", invdate: "2007-09-08", name: "test10", note: "note10", amount: "500.00", tax: "30.00", closed: true,  ship_via: "TN", total: "530.00" },
+                { id: "110", invdate: "2007-09-08", name: "test11", note: "note11", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00" },
+                { id: "120", invdate: "2007-09-10", name: "test12", note: "note12", amount: "500.00", tax: "30.00", closed: false, ship_via: "FE", total: "530.00" }
+            ],
+            $grid = $("#list"),
+            initDateEdit = function (elem) {
+                $(elem).datepicker({
+                    dateFormat: "dd-M-yy",
+                    autoSize: true,
+                    changeYear: true,
+                    changeMonth: true,
+                    showButtonPanel: true,
+                    showWeek: true
+                });
+            },
+            initDateSearch = function (elem) {
+                setTimeout(function () {
+                    initDateEdit(elem);
+                }, 100);
+            };
+
+        $grid.jqGrid({
+            data: mydata,
+            colNames: ["", "Client", "Date", "Amount", "Tax", "Total", "Closed", "Shipped via", "Notes"],
+            colModel: [
+                { name: "act", template: "actions", align: "left", width: 65 },
+                { name: "name", align: "center", width: 92, editrules: {required: true} },
+                { name: "invdate", width: 72, align: "center", sorttype: "date", frozen: true,
+                    formatter: "date", formatoptions: { newformat: "d-M-Y", reformatAfterEdit: true }, datefmt: "d-M-Y",
+                    editoptions: { dataInit: initDateEdit },
+                    searchoptions: { sopt: ["eq", "ne", "lt", "le", "gt", "ge"], dataInit: initDateSearch } },
+                { name: "amount", width: 56, template: "number" },
+                { name: "tax", width: 35, template: "number", autoResizableMinColSize: 40 },
+                { name: "total", width: 43, template: "number" },
+                { name: "closed", width: 49, template: "booleanCheckboxFa" },
+                { name: "ship_via", width: 76, align: "center", formatter: "select",
+                    edittype: "select", editoptions: { value: "FE:FedEx;TN:TNT;IN:Intim", defaultValue: "IN" },
+                    stype: "select", searchoptions: { sopt: ["eq", "ne"], value: ":Any;FE:FedEx;TN:TNT;IN:IN" } },
+                { name: "note", width: 43, edittype: "textarea", sortable: false }
+            ],
+            cmTemplate: { editable: true, autoResizable: true },
+            iconSet: "fontAwesome",
+            rowNum: 10,
+            autoResizing: { compact: true },
+            rowList: [5, 10, 20, "10000:All"],
+            viewrecords: true,
+            pager: true,
+            toppager: true,
+            inlineEditing: { keys: true, position: "afterSelected" },
+            rownumbers: true,
+            sortname: "invdate",
+            sortorder: "desc",
+            caption: "Demonstration of the usage custom action buttons",
+            actionsNavOptions: {
+                editbutton: false,
+                posticon: "fa-lock",
+                posttitle: "Confirm (F2)",
+                openicon: "fa-folder-open-o",
+                opentitle: "Open (Enter)",
+                isDisplayButtons: function (options, rowData) {
+                    if (options.rowData.closed) { // or rowData.closed
+                        return { post: { hidden: true }, del: { display: false } };
+                    }
+                },
+                custom: [
+                    { action: "open", position: "first",
+                        onClick: function (options) {
+                            alert("Open, rowid=" + options.rowid);
+                        } },
+                    { action: "post", position: "first",
+                        onClick: function (options) {
+                            alert("Post, rowid=" + options.rowid);
+                        } }
+                ]
+            }
+        }).jqGrid("gridResize");
+    });
+    //]]>
+    </script>
+</head>
+
+<body>
+    
+    <div class="container" style="padding-top: 1em;">
+  <div class="btn-group-vertical">
+    <button type="button" class="btn btn-default">Botón</button>
+    <button type="button" class="btn btn-default">Botón</button>
+    <div class="btn-group">
+      <button id="btnGroupVerticalDrop1" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Botón desplegable
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop1">
+        <li><a href="#">Enlace #1</a></li>
+        <li><a href="#">Enlace #2</a></li>
+      </ul>
+    </div>
+    <button type="button" class="btn btn-default">Botón</button>
+    <button type="button" class="btn btn-default">Botón</button>
+    <div class="btn-group">
+      <button id="btnGroupVerticalDrop2" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Botón desplegable
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop2">
+        <li><a href="#">Enlace #1</a></li>
+        <li><a href="#">Enlace #2</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button id="btnGroupVerticalDrop3" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Botón desplegable
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop3">
+        <li><a href="#">Enlace #1</a></li>
+        <li><a href="#">Enlace #2</a></li>
+      </ul>
+    </div>
+    <div class="btn-group">
+      <button id="btnGroupVerticalDrop4" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        Botón desplegable
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop4">
+        <li><a href="#">Enlace #1</a></li>
+        <li><a href="#">Enlace #2</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    <div id="outerDiv" style="margin:5px;">
+        <table id="list"></table>
+    </div>
+    
+    <div class="checkbox">
+  <label><input type="checkbox" value="">Option 1</label>
+</div>
+    
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+    </div>
+</div>
+    
+</body>
+</html>

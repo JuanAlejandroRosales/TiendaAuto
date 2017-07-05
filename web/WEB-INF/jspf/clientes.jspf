@@ -1,0 +1,65 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="container" style="padding-top: 1em;">
+<table class="table table-bordered table table-hover" style="width:900px">
+  <thead>
+    <tr>
+      <th>Dni/Ruc</th>
+      <th>Nombre Cliente</th>
+      <th>Tipo</th>
+      <th>Dirección</th>
+      <th>Teléfono</th>
+      <th>E-mail</th>
+      <th>Estado</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>45124513</td>
+      <td>Carlos Salcedo</td>
+      <td>Natural</td>
+      <td>Av. Naranjal</td>
+      <td>2245123</td>
+      <td>carlos@hotmail.com</td>
+      <td>Activo</td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-tag"></span> Editar</a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+      </td>
+    </tr>
+    <tr>
+      <td>15712547</td>
+      <td>Raquel Rios</td>
+      <td>Natural</td>
+      <td>Av. Angamos</td>
+      <td>2546878</td>
+      <td>raque@yahoo.com</td>
+      <td>Activo</td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-tag"></span> Editar</a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-tag"></span> Editar</a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

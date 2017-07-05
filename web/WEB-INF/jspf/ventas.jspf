@@ -1,0 +1,54 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="" style="padding-top: 1em;">
+<table class="table table-bordered table table-hover" style="width:940px">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Marca</th>
+      <th>Modelo</th>
+      <th>Precio</th>
+      <th>Cantidad</th>
+      <th>IGV</th>
+      <th>Importe</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Hyundai</td>
+      <td>i20</td>
+      <td>$20 000</td>
+      <td>2</td>
+      <td>$25 000</td>
+      <td>$30 000</td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-plus"></span></a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-minus"></span></a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span></a>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Isuzu</td>
+      <td>i45</td>
+      <td>$35 000</td>
+      <td>1</td>
+      <td>$40 000</td>
+      <td>$45 000</td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-plus"></span></a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-minus"></span></a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

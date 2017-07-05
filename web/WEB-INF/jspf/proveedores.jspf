@@ -1,0 +1,61 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="container" style="padding-top: 1em;">
+<table class="table table-bordered table table-hover" style="width:800px">
+  <thead>
+    <tr>
+      <th>Ruc</th>
+      <th>Razón Social</th>
+      <th>Dirección</th>
+      <th>Telèfono</th>
+      <th>E-mail</th>
+      <th>Estado</th>
+      <th>Opciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>23556422</td>
+      <td>auto&perfor sac</td>
+      <td>Av. México 1234</td>
+      <td>5346886</td>
+      <td>auto@gmail.com</td>
+      <td>Activo</td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-tag"></span> Editar</a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-tag"></span> Editar</a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-tag"></span> Editar</a>
+          <a class="btn btn-primary btn-sm" href="#" role="button">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

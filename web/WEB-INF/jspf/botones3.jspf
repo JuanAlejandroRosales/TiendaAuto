@@ -1,0 +1,10 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="container" style="padding-top: 1em;">
+  <ul class="nav nav-pills">
+    <li class="active"><a href="#">Categoria</a></li>
+    <li><a href="#">Productos</a></li>
+    <li><a href="#">Reportes</a></li>
+    <li><a href="#">Perfil</a></li>
+  </ul>
+</div>
