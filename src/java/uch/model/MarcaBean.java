@@ -1,7 +1,9 @@
 
 package uch.model;
 
-public class MarcaBean {
+import java.io.Serializable;
+
+public class MarcaBean implements Serializable{
     private String codigo;
     private String nombre;
     private String nacionalidad;
