@@ -9,7 +9,11 @@ GO
 USE bd_ventas
 GO
 
--------------------------- TABLA AUTOMOVIL -------------------------------
+-- =====================================================================================
+-- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- CREATE DATE	:	23 DE JUNIO DEL 2017
+-- DESCRIPTION	:	TABLA AUTOMOVIL
+---=====================================================================================
 CREATE TABLE AUTOMOVIL
 (
 	ID_AUTOMOVIL	VARCHAR(9) NOT NULL,
@@ -26,9 +30,13 @@ CREATE TABLE AUTOMOVIL
 ) 
 GO
 
--------------------------- TABLA MARCAS -------------------------------
-IF EXISTS (SELECT NAME FROM SYSOBJECTS WHERE NAME='MARCAS' AND TYPE='U')
-DROP TABLE MARCAS
+-- =====================================================================================
+-- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- CREATE DATE	:	23 DE JUNIO DEL 2017
+-- DESCRIPTION	:	TABLA MARCAS
+---=====================================================================================
+IF EXISTS (SELECT NAME FROM SYSOBJECTS WHERE NAME='MARCA' AND TYPE='U')
+DROP TABLE MARCA
 GO
 
 CREATE TABLE MARCA
