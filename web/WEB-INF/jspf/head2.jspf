@@ -11,9 +11,9 @@
       <li><a href="#">CONTACTO</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+      <li class="welcome"><b>BIENVENIDO:</b> <%out.print(session.getAttribute("strUsuario"));%></li>  
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><% out.print(session.getAttribute("strUsuario")); %></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li><a href="ServletLogout"><span class="glyphicon glyphicon-log-in"></span> CERRAR SESION</a></li>
     </ul>
   </div>
 </nav>

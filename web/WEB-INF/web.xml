@@ -9,6 +9,10 @@
         <url-pattern>/ServletLogin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletLogout</servlet-name>
+        <url-pattern>/ServletLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletAuto</servlet-name>
         <url-pattern>/ServletAutoListarTodos</url-pattern>
     </servlet-mapping>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>ServletAuto</servlet-name>
         <url-pattern>/ServletAutoEliminar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAuto</servlet-name>
+        <url-pattern>/ServletAutoHome</url-pattern>
     </servlet-mapping>
     <welcome-file-list>         
         <welcome-file>index.html</welcome-file>  

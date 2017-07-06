@@ -122,6 +122,16 @@
     margin: 0 0 0 0;
 }
 
+.welcome {
+    padding: 2px;
+    text-align: center;
+    color: white;
+    line-height: 120%; 
+    font-size: 1.3em;
+    vertical-align: top;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+}
 
 input.submit{
     width: auto;

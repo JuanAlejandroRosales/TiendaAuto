@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import uch.dao.AutoDao;
 import uch.dao.funcAyuda;
@@ -24,7 +25,7 @@ import uch.model.AutoBean;
 @WebServlet(name = "ServletAuto", urlPatterns = {"/ServletAutoListarTodos", "/ServletAutoPaginar",
     "/ServletAutoVentanaNuevo", "/ServletAutoGrabarNuevo",
     "/ServletAutoVentanaModificar","/ServletAutoGrabarModificar","/ServletAutoPaginardll",
-    "/ServletAutoEliminar"})
+    "/ServletAutoEliminar","/ServletAutoHome"})
 @MultipartConfig
 public class ServletAuto extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -48,6 +49,8 @@ public class ServletAuto extends HttpServlet {
                 grabarModificar(request, response);
             } else if (path.equals("/ServletAutoEliminar")) {
                 Eliminar(request, response);
+            } else if (path.equals("/ServletAutoHome")) {
+                ventanaHome(request, response);
             }
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
@@ -56,6 +59,7 @@ public class ServletAuto extends HttpServlet {
 
     private void grabarModificar(HttpServletRequest request, HttpServletResponse response) {
         try {
+            validar(request, response);
             String strCodigo = request.getParameter("txtCodigoh");
             String strMarca = request.getParameter("ddlMarca");
             String strModelo = request.getParameter("txtModelo");
@@ -87,6 +91,7 @@ public class ServletAuto extends HttpServlet {
 
     private void ventanaModificar(HttpServletRequest request, HttpServletResponse response) {
         try {
+            validar(request, response);
             String strId = request.getParameter("id");
             AutoBean auto = new AutoBean();
             AutoDao dao = new AutoDao();
@@ -102,6 +107,7 @@ public class ServletAuto extends HttpServlet {
     
     private void Eliminar(HttpServletRequest request, HttpServletResponse response) {
         try {
+            validar(request, response);
             String strId = request.getParameter("id");
             AutoBean auto = new AutoBean();
             auto.setCodigo(strId);
@@ -122,6 +128,7 @@ public class ServletAuto extends HttpServlet {
 
     private void grabarNuevo(HttpServletRequest request, HttpServletResponse response) {
         try {
+            validar(request, response);
             Calendar c = Calendar.getInstance();
             AutoDao dao = new AutoDao();
             String codigo = null;
@@ -192,14 +199,56 @@ public class ServletAuto extends HttpServlet {
 
     private void ventanaNuevo(HttpServletRequest request, HttpServletResponse response) {
         try {
+            validar(request, response);
             request.getRequestDispatcher("/jsp/AutosNuevo.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
         }
     }
+    
+    private void ventanaHome(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            validar(request, response);
+            request.getRequestDispatcher("/jsp/main3.jsp").forward(request, response);
+        } catch (Exception e) {
+            request.setAttribute("error", e.getMessage());
+        }
+    }
+    
+    private void validar(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String strUsuario = "";
+            HttpSession sesionOk = request.getSession();
+
+            if (sesionOk.isNew())
+            {
+                request.getRequestDispatcher("../index.jsp").forward(request, response);
+                return;
+            }
+    
+            if (sesionOk == null)
+            {
+                request.getRequestDispatcher("../index.jsp").forward(request, response);
+                // response.sendRedirect("login.jsp");
+            }
+            else
+            {
+                if (sesionOk.getAttribute("strUsuario") == null)
+                {
+                    request.getRequestDispatcher("./index.jsp").forward(request, response);
+                    //response.sendRedirect("login.jsp");
+                }else {
+                    strUsuario = (String)sesionOk.getAttribute("strUsuario");
+                }
+            }
+        } catch (Exception e) {
+            request.setAttribute("error", e.getMessage());
+        }
+    }    
 
     private void listarTodos(HttpServletRequest request, HttpServletResponse response) {
         try {
+            validar(request, response);
             AutoDao dao = new AutoDao();
             List<AutoBean> lista = new ArrayList<AutoBean>();
             lista = dao.listar();
@@ -213,6 +262,7 @@ public class ServletAuto extends HttpServlet {
     private void paginar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            validar(request, response);
             //Variable para el acceso a la base de datos
             AutoDao dao = new AutoDao();
 
@@ -255,6 +305,7 @@ public class ServletAuto extends HttpServlet {
     private void paginardll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            validar(request, response);
             //Variable para el acceso a la base de datos
             AutoDao dao = new AutoDao();
 
