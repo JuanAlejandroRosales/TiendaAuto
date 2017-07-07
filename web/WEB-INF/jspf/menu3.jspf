@@ -1,5 +1,5 @@
 <%-- any content can be specified here e.g.: --%>
-<%@ page pageEncoding="UTF-8" %>
+<%@ page pageEncoding="UTF-8"%>
 <div class="" style="padding-top: 1em;">
   <ul class="nav nav-pills nav-stacked" style="max-width: 200px;">
     <li id="bt0"><a href="http://<%=request.getServerName() + ':' + 
@@ -31,3 +31,5 @@
                                request.getContextPath()%>/jsp/CopiadeSeguridad.jsp"><span class="glyphicon glyphicon-user"></span> BACKUP</a></li>
   </ul>
 </div>
+  
+

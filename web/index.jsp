@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <p>
-                                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="">
+                                            <input type="text" class="form-control" id="usuario" name="txtusuario" placeholder="">
                                         </p>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <p>
-                                            <input type="password" class="form-control" name="password" placeholder="">
+                                            <input type="password" class="form-control" name="txtpassword" placeholder="">
                                         </p>
                                     </div>
                                 </div>

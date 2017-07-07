@@ -26,8 +26,8 @@ public class ServletLogin extends HttpServlet {
 
     private void login(HttpServletRequest request, HttpServletResponse response) {
         try {
-            String strUsuario = request.getParameter("usuario");
-            String strPassword = request.getParameter("password");
+            String strUsuario = request.getParameter("txtusuario");
+            String strPassword = request.getParameter("txtpassword");
             UsuarioDao dao = new UsuarioDao();
             String resultado = dao.login(strUsuario, strPassword);
             HttpSession sessionOk = request.getSession();
@@ -45,7 +45,7 @@ public class ServletLogin extends HttpServlet {
     
   private void ventanaIndex(HttpServletRequest request, HttpServletResponse response) {
         try {
-            request.getRequestDispatcher("jsp/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
         }
