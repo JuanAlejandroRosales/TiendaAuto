@@ -44,14 +44,28 @@
                         <div class="col-md-1 col-md-offset-1">
                             <h5><b>Mostrar</b></h5>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-3">
                             <select class="form-control" style="width:70px">
-                                <option>10</option>
+                                <option value="10">10</option>
                                 <option>20</option>
                                 <option>30</option>
                                 <option>40</option>
                                 <option>50</option>
                             </select>
+                            <!-- Split button -->
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-default">10</button>
+                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">20</a></li>
+                                <li><a href="#">30</a></li>
+                                <li><a href="#">40</a></li>
+                                <li><a href="#">50</a></li>
+                              </ul>
+                            </div>
                         </div>
                         <div class="col-md-1">
                             <h5><b>Elementos</b></h5>

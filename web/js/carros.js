@@ -1,12 +1,17 @@
 //<![CDATA[
 /*global $ */
 /*jslint browser: true */
-$(function () {
-    
+$(document).ready(function () {
+ 
+    $('#bt0').removeClass('active');
     $('#bt1').removeClass('active');
     $('#bt2').removeClass('active');
     $('#bt3').removeClass('active');
     $('#bt4').removeClass('active');
+    $('#bt5').removeClass('active');
+    $('#bt6').removeClass('active');
+    $('#bt7').removeClass('active');
+    $('#bt8').removeClass('active');
     
     $('#datetimepicker1').datetimepicker({
         format: 'DD/MM/YYYY',
@@ -68,39 +73,48 @@ $(function () {
         caption: "Lista de Automoviles"
             
     }).jqGrid("gridResize");
-        
+    
+    
     $('.nav li a').click(function (e) {
-  
         var $parent = $(this).parent();
         document.cookie = eraseCookie("bt");
         document.cookie = createCookie("bt", $parent.attr('id'),0);
     });
-     
+
     $().ready(function () {
         var $activeBt = readCookie("bt");
-        if (!$activeBt =="") {
-        $('#bt1').removeClass('active');
+        $('#'+$activeBt).removeClass('active');
+        if (!$activeBt=="") {
+            $('#bt0').removeClass('active');
+            $('#bt1').removeClass('active');
+            $('#bt2').removeClass('active');
+            $('#bt3').removeClass('active');
+            $('#bt4').removeClass('active');
+            $('#bt5').removeClass('active');
+            $('#bt6').removeClass('active');
+            $('#bt7').removeClass('active');
+            $('#bt8').removeClass('active');
         }
         //alert($activeBt.toString());
        
         $('#'+$activeBt).addClass('active');
     });
     
+    var value = $('#txtvalue').val();
+    $('#ddlTamPag').removeClass('selected');
+    $("#ddlTamPag option[value="+ value +"]").attr("selected", "selected");
+
+  
     var marca = $('#txtIdMarca').val();
     $("#marcas option[value="+ marca +"]").attr("selected",true);
     
-    var value = $('#txtvalue').val();
-    $("#ddlTamPag option[value="+ value +"]").attr("selected",true);
-    //alert(value);
+    
+    
     
 });
 //]]>
     
 function hideOther() {
-  var selectBox = document.getElementById("ddlTamPag");
-  var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-  //alert(selectedValue);
-  x = selectedValue;
 }
 
 

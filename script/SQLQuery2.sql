@@ -1,16 +1,21 @@
 USE MASTER
 GO
 
-IF EXISTS(SELECT * FROM SYSDATABASES WHERE NAME='bd_ventas')
-DROP DATABASE bd_ventas
+-- =====================================================================================
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
+-- CREATE DATE	:	20 DE JUNIO DEL 2017
+-- DESCRIPTION	:	BASE DE DATOS USUARIO BD_VENTAS
+---=====================================================================================
+IF EXISTS(SELECT * FROM SYSDATABASES WHERE NAME='BD_VENTAS')
+DROP DATABASE BD_VENTAS
 GO
-CREATE DATABASE bd_ventas
+CREATE DATABASE BD_VENTAS
 GO
-USE bd_ventas
+USE BD_VENTAS
 GO
 
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
 -- CREATE DATE	:	23 DE JUNIO DEL 2017
 -- DESCRIPTION	:	TABLA USUARIO
 ---=====================================================================================
@@ -20,37 +25,39 @@ GO
 
 CREATE TABLE USUARIO
 (
-	ID_USUARIO		VARCHAR(9) NOT NULL,
-	ID_PERSONAL		VARCHAR(9) NULL,
-	USUARIO			VARCHAR(50) NOT NULL,
-	PASSWORD		VARCHAR(50) NOT NULL,
-	EMAIL			VARCHAR(50) NULL,
-	ESTADO			CHAR(1) NOT NULL,
-	FECHA_REGISTRO	VARCHAR(10) NOT NULL,
+	ID_USUARIO			VARCHAR(9) NOT NULL,
+	ID_PERSONAL			VARCHAR(9) NULL,
+	USUARIO				VARCHAR(50) NOT NULL,
+	PASSWORD			VARCHAR(50) NOT NULL,
+	EMAIL				VARCHAR(50) NULL,
+	ESTADO				CHAR(1) NOT NULL,
+	FECHA_REGISTRO		VARCHAR(10) NOT NULL,
+	USUARIO_REGISTRO	VARCHAR(9) NOT NULL
 
 	CONSTRAINT PK_USUARIO PRIMARY KEY CLUSTERED (ID_USUARIO ASC) 
     ON [PRIMARY] 
 ) 
 GO
 
-INSERT INTO USUARIO(ID_USUARIO, ID_PERSONAL, USUARIO, PASSWORD, EMAIL,ESTADO, FECHA_REGISTRO) VALUES ('USR000001','PER000001','ADMIN','ADMIN','ADMIN@GMAIL.COM','A','04/03/2017');
-INSERT INTO USUARIO(ID_USUARIO, ID_PERSONAL, USUARIO, PASSWORD, EMAIL,ESTADO, FECHA_REGISTRO) VALUES ('USR000002','PER000002','KATHY','PAOLA','KATHY@GMAIL.COM','A','01/07/2017');
+--INSERT INTO USUARIO(ID_USUARIO, ID_PERSONAL, USUARIO, PASSWORD, EMAIL,ESTADO, FECHA_REGISTRO) VALUES ('USR000001','PER000001','ADMIN','ADMIN','ADMIN@GMAIL.COM','A','04/03/2017');
+--INSERT INTO USUARIO(ID_USUARIO, ID_PERSONAL, USUARIO, PASSWORD, EMAIL,ESTADO, FECHA_REGISTRO) VALUES ('USR000002','PER000002','KATHY','PAOLA','KATHY@GMAIL.COM','A','01/07/2017');
 
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
 -- CREATE DATE	:	23 DE JUNIO DEL 2017
 -- DESCRIPTION	:	TABLA AUTOMOVIL
 ---=====================================================================================
 CREATE TABLE AUTOMOVIL
 (
-	ID_AUTOMOVIL	VARCHAR(9) NOT NULL,
-	ID_MARCA		VARCHAR(9) NOT NULL,
-	MODELO			VARCHAR(9) NOT NULL,
-	COLOR			VARCHAR(32) NOT NULL,
-	PRECIO			DECIMAL(15,2) NOT NULL,
-	STOCK			INT NOT NULL,
-	ESTADO			CHAR(1) NOT NULL,
-	FECHA_REGISTRO	VARCHAR(10) NOT NULL,
+	ID_AUTOMOVIL		VARCHAR(9) NOT NULL,
+	ID_MARCA			VARCHAR(9) NOT NULL,
+	MODELO				VARCHAR(9) NOT NULL,
+	COLOR				VARCHAR(32) NOT NULL,
+	PRECIO				DECIMAL(15,2) NOT NULL,
+	STOCK				INT NOT NULL,
+	ESTADO				CHAR(1) NOT NULL,
+	FECHA_REGISTRO		VARCHAR(10) NOT NULL,
+	USUARIO_REGISTRO	VARCHAR(9) NOT NULL
 
 	CONSTRAINT PK_AUTOMOVIL PRIMARY KEY CLUSTERED (ID_AUTOMOVIL ASC) 
     ON [PRIMARY] 
@@ -58,7 +65,7 @@ CREATE TABLE AUTOMOVIL
 GO
 
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
 -- CREATE DATE	:	23 DE JUNIO DEL 2017
 -- DESCRIPTION	:	TABLA MARCAS
 ---=====================================================================================
@@ -68,16 +75,111 @@ GO
 
 CREATE TABLE MARCA
 (
-	ID_MARCA		VARCHAR(9) NOT NULL,
-	NOMBRE			VARCHAR(30) NOT NULL,
-	NACIONALIDAD	VARCHAR(9) NULL,
-	ESTADO			CHAR(1) NOT NULL,
-	FECHA_REGISTRO	VARCHAR(10) NOT NULL,
+	ID_MARCA			VARCHAR(9) NOT NULL,
+	NOMBRE				VARCHAR(30) NOT NULL,
+	NACIONALIDAD		VARCHAR(9) NULL,
+	ESTADO				CHAR(1) NOT NULL,
+	FECHA_REGISTRO		VARCHAR(10) NOT NULL,
+	USUARIO_REGISTRO	VARCHAR(9) NOT NULL
 
 	CONSTRAINT PK_MARCA PRIMARY KEY CLUSTERED (ID_MARCA ASC) 
     ON [PRIMARY] 
 )
 GO 
+
+
+-- =====================================================================================
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
+-- CREATE DATE	:	04 DE JULIO DEL 2017
+-- DESCRIPTION	:	TABLA CLIENTE
+---=====================================================================================
+IF EXISTS (SELECT NAME FROM SYSOBJECTS WHERE NAME='CLIENTE' AND TYPE='U')
+DROP TABLE CLIENTE
+GO
+
+CREATE TABLE CLIENTE
+(
+	ID_CLIENTE			VARCHAR(9) NOT NULL,
+	PRI_NOMBRE			VARCHAR(50) NULL,
+	SEG_NOMBRE			VARCHAR(50) NULL,
+	PRI_APELLIDO		VARCHAR(50) NULL,
+	SEG_APELLIDO		VARCHAR(50) NULL,
+	RAZON_SOCIAL		VARCHAR(100) NULL,
+	NOMBRE_COMERCIAL	VARCHAR(100) NULL,
+	TIPO_DOCUMENTO		VARCHAR(80) NULL,
+	NUMERO_DOCUMENTO	VARCHAR(80) NULL,
+	NUMERO_RUC			VARCHAR(11) NOT NULL,
+	FECHA_NACIMIENTO	DATETIME NULL,
+	TIPO_CLIENTE		VARCHAR(50) NOT NULL,
+	CLASE_CLIENTE		VARCHAR(50) NOT NULL,
+	ID_UBIGEO			VARCHAR(6) NOT NULL,
+	DIRECCION			VARCHAR(100) NOT NULL,
+	ID_PAIS				VARCHAR(9) NOT NULL,
+	TELEFONO_FIJO		VARCHAR(7) NULL,
+	CELULAR				VARCHAR(9) NULL,
+	EMAIL				VARCHAR(50) NULL,
+	SEXO				CHAR(1) NOT NULL,
+	ESTADO				CHAR(1) NOT NULL,
+	FECHA_REGISTRO		VARCHAR(10) NOT NULL,
+	USUARIO_REGISTRO	VARCHAR(9) NOT NULL
+
+	CONSTRAINT PK_CLIENTES PRIMARY KEY CLUSTERED (ID_CLIENTE ASC) 
+    ON [PRIMARY] 
+) 
+GO
+
+
+
+-- =====================================================================================
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
+-- CREATE DATE	:	04 DE JULIO DEL 2017
+-- DESCRIPTION	:	TABLA UBIGEO
+---=====================================================================================
+IF EXISTS (SELECT NAME FROM SYSOBJECTS WHERE NAME='UBIGEO' AND TYPE='U')
+DROP TABLE UBIGEO
+GO
+
+CREATE TABLE UBIGEO
+(
+	ID_UBIGEO			VARCHAR(6) NOT NULL,
+	DEPARTAMENTO		VARCHAR(50) NULL, 
+	PROVINCIA			VARCHAR(50) NULL,
+	DISTRITO			VARCHAR(50) NULL,
+	ESTADO				CHAR(1) NOT NULL,
+	FECHA_REGISTRO		VARCHAR(10) NOT NULL,
+	USUARIO_REGISTRO	VARCHAR(9) NOT NULL
+
+	CONSTRAINT PK_UBIGEO PRIMARY KEY CLUSTERED (ID_UBIGEO ASC) 
+    ON [PRIMARY] 
+) 
+GO
+
+
+-- =====================================================================================
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
+-- CREATE DATE	:	04 DE JULIO DEL 2017
+-- DESCRIPTION	:	TABLA PAIS
+---=====================================================================================
+IF EXISTS (SELECT NAME FROM SYSOBJECTS WHERE NAME='PAIS' AND TYPE='U')
+DROP TABLE PAIS
+GO
+
+CREATE TABLE PAIS
+(
+	ID_PAIS				VARCHAR(9) NOT NULL,
+	ISO_1				VARCHAR(3) NOT NULL,
+	ISO_2				VARCHAR(3) NOT NULL,
+	ISO_3				VARCHAR(3) NOT NULL,
+	NOMBRE				VARCHAR(100) NOT NULL,
+	ESTADO				CHAR(1) NOT NULL,
+	FECHA_REGISTRO		VARCHAR(10) NOT NULL,
+	USUARIO_REGISTRO	VARCHAR(9) NOT NULL
+
+	CONSTRAINT PK_PAIS PRIMARY KEY CLUSTERED (ID_PAIS ASC) 
+    ON [PRIMARY] 
+) 
+GO
+
 
 ALTER TABLE AUTOMOVIL 
 	WITH CHECK 
@@ -89,8 +191,29 @@ ALTER TABLE AUTOMOVIL
 GO
 
 
+ALTER TABLE CLIENTE  
+	WITH CHECK 
+	ADD  CONSTRAINT FK_CLIENTE_UBIGEO 
+	FOREIGN KEY(ID_UBIGEO)
+	REFERENCES UBIGEO (ID_UBIGEO)
+	ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+GO
+
+
+ALTER TABLE CLIENTE  
+	WITH CHECK 
+	ADD  CONSTRAINT FK_CLIENTE_PAISE 
+	FOREIGN KEY(ID_PAIS)
+	REFERENCES PAISE (ID_PAIS)
+	ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+GO
+
+
+
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA       
 -- CREATE DATE	:	23 DE JUNIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA LOGIN DE LOS USUARIOS
 -- =====================================================================================
@@ -113,7 +236,7 @@ GO
 --GO
 
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA       
 -- CREATE DATE	:	23 DE JUNIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA LISTAR LOS AUTOMOVILES
 -- =====================================================================================
@@ -138,7 +261,7 @@ GO
 --GO
 
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA       
 -- CREATE DATE	:	23 DE JUNIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA GENERAR CODIGO DE AUTOMOVIL
 -- =====================================================================================
@@ -158,7 +281,7 @@ GO
 --GO
 
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA       
 -- CREATE DATE	:	01 DE JULIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA GENERAR CODIGO DE MARCA
 -- =====================================================================================
@@ -178,7 +301,29 @@ GO
 --GO
 
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
+-- CREATE DATE	:	02 DE JULIO DEL 2017
+-- DESCRIPTION	:	PROCEDIMIENTO PARA GENERAR CODIGO DE CLIENTE
+-- =====================================================================================
+---------------------------- GENERAR CODIGO DE CLIENTE ------------------------------
+IF EXISTS(SELECT NAME FROM SYSOBJECTS WHERE NAME='USP_GENERARCODIGOCLIENTE' AND TYPE='P')
+DROP PROC USP_GENERARCODIGOCLIENTE
+GO
+CREATE proc USP_GENERARCODIGOCLIENTE
+AS
+DECLARE @CODIGO CHAR(9)
+SET @CODIGO=(SELECT MAX(ID_CLIENTE) AS CODIGO FROM CLIENTE)
+SET @CODIGO='MAR'+RIGHT('00000'+LTRIM(RIGHT(ISNULL(@CODIGO,'00000'),6)+1),6)
+SELECT @CODIGO AS CODIGO
+GO
+
+--EXEC USP_GENERARCODIGOCLIENTE
+--GO
+
+
+
+-- =====================================================================================
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA       
 -- CREATE DATE	:	23 DE JUNIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA LISTAR LOS AUTOMOVILES
 -- =====================================================================================
@@ -198,7 +343,7 @@ EXEC USP_MARCA_CONSULTA_LISTA
 GO
 
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
 -- CREATE DATE	:	23 DE JUNIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA INSERTAR REGISTROS EN lA TABLA AUTOMOVIL
 -- =====================================================================================
@@ -244,7 +389,7 @@ GO
 
 
 -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
 -- CREATE DATE	:	01 DE JULIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA ACTUALIZAR REGISTROS EN lA TABLA AUTOMOVIL
 -- =====================================================================================
@@ -271,7 +416,7 @@ GO
 
 
 -- =================================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
 -- CREATE DATE	:	02 DE JULIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA ELIMINAR UN REGISTROS EN lA TABLA AUTOMOVIL - ESTADO INACTIVO
 -- =================================================================================================
@@ -292,7 +437,7 @@ GO
 
 
  -- =====================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
 -- CREATE DATE	:	01 DE JULIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA BUSCAR UN REGISTRO EN lA TABLA AUTOMOVIL
 -- =====================================================================================
@@ -316,7 +461,7 @@ WHERE ID_AUTOMOVIL=@ID_AUTOMOVIL AND ESTADO = 'A'
 GO
 
 -- =========================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA       
 -- CREATE DATE	:	02 DE JULIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA MOSTRAR LA CANTIDAD DE REGISTROS EN lA TABLA AUTOMOVIL
 -- ===========================================================================================
@@ -335,7 +480,7 @@ GO
 --GO
 
 -- =========================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA       
 -- CREATE DATE	:	02 DE JULIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA LA PAGINACIÓN EN lA TABLA AUTOMOVIL
 -- ===========================================================================================
@@ -359,7 +504,7 @@ GO
 --GO
 
 -- =========================================================================================
--- AUTHOR		:	KATHY DE LOS SANTOS GARCIA	       
+-- AUTHOR		:	KATHERINE PAOLA DE LOS SANTOS GARCIA	       
 -- CREATE DATE	:	02 DE JULIO DEL 2017
 -- DESCRIPTION	:	PROCEDIMIENTO PARA FILTRAR LA CANTIDAD DE REGISTROS EN lA TABLA AUTOMOVIL
 -- ===========================================================================================

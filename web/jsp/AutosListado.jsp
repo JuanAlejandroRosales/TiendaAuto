@@ -47,13 +47,12 @@
                         <div class="col-md-1">
                             <select class="form-control" style="width:70px" name="ddlTamPag" id="ddlTamPag" 
                                     onchange="location = this.value;">
-                                <option value="./ServletAutoPaginardll?CantReg=10" onclick="hideOther();">10</option>
-                                <option value="./ServletAutoPaginardll?CantReg=10" onclick="hideOther();">10</option>
-                                <option value="./ServletAutoPaginardll?CantReg=20" onclick="hideOther();">20</option>
-                                <option value="./ServletAutoPaginardll?CantReg=30" onclick="hideOther();">30</option>
-                                <option value="./ServletAutoPaginardll?CantReg=40" onclick="hideOther();">40</option>
-                                <option value="./ServletAutoPaginardll?CantReg=50" onclick="hideOther();">50</option>
-                                <option value="./ServletAutoListarTodos">Todo</option>
+                                <option id="op0" value="./ServletAutoPaginardll?CantReg=10" onclick="hideOther();">10</option>
+                                <option id="op2" value="./ServletAutoPaginardll?CantReg=20" onclick="hideOther();">20</option>
+                                <option id="op3" value="./ServletAutoPaginardll?CantReg=30" onclick="hideOther();">30</option>
+                                <option id="op4" value="./ServletAutoPaginardll?CantReg=40" onclick="hideOther();">40</option>
+                                <option id="op5" value="./ServletAutoPaginardll?CantReg=50" onclick="hideOther();">50</option>
+                                <option id="op6" value="./ServletAutoListarTodos">Todo</option>
                             </select>
                         </div>
                         <div class="col-md-1">

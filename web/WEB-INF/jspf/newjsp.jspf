@@ -28,7 +28,7 @@
                 <td>
                     <a class="btn btn-primary btn-sm" href="./ServletAutoVentanaModificar?id=${var.codigo}" role="button">
                     <span class="glyphicon glyphicon-tag"></span> Editar</a>
-                    <a class="btn btn-primary btn-sm" href="./ServletAutoEliminar?id=${var.codigo}" role="button">
+                    <a class="btn btn-primary btn-sm" href="./ServletAutoEliminar?id=${var.codigo}" role="button" id="btneliminar">
                     <span class="glyphicon glyphicon-trash"></span> Eliminar</a>
                 </td>
             </tr>

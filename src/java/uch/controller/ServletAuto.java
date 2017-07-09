@@ -320,15 +320,15 @@ public class ServletAuto extends HttpServlet {
             
             String value=null;
             if (CantReg==10) {
-               value="./ServletAutoPaginardll?CantReg=10";  
+               value="'./ServletAutoPaginardll?CantReg=10'";  
             }else if (CantReg==20) {
-               value="./ServletAutoPaginardll?CantReg=20";
+               value="'./ServletAutoPaginardll?CantReg=20'";
             }else if (CantReg==30) {
-               value="./ServletAutoPaginardll?CantReg=30";
+               value="'./ServletAutoPaginardll?CantReg=30'";
             }else if (CantReg==40) {
-               value="./ServletAutoPaginardll?CantReg=40";
+               value="'./ServletAutoPaginardll?CantReg=40'";
             }else if (CantReg==50) {
-               value="./ServletAutoPaginardll?CantReg=50";
+               value="'./ServletAutoPaginardll?CantReg=50'";
             }   
             
             //Obtenemos la primera pagina /Por defecto siempre va ser 1
