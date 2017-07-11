@@ -14,7 +14,7 @@ public class ConexionBD {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();
             String url = "jdbc:sqlserver://DESKTOP-KVSVG71;"+
-                        "database=bd_ventas;"+
+                        "database=BD_VENTAS;"+
                         "user=sa;"+
                         "password=123456;";
             //creating connection to SQL SERVER database using JDBC

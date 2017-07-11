@@ -7,7 +7,7 @@
                                request.getContextPath()%>/ServletAutoHome"><span class="glyphicon glyphicon-home"></span> HOME</a></li>  
     <li id="bt1"><a href="http://<%=request.getServerName() + ':' + 
                                request.getServerPort() + 
-                               request.getContextPath()%>/jsp/ClientesListado.jsp"><i class="fa fa-users" aria-hidden="true"></i> CLIENTES</a></li>
+                               request.getContextPath()%>/ServletClientePaginar"><i class="fa fa-users" aria-hidden="true"></i> CLIENTES</a></li>
     <li id="bt2"><a href="http://<%=request.getServerName() + ':' + 
                                request.getServerPort() + 
                                request.getContextPath()%>/ServletAutoPaginar"><i class="fa fa-car" aria-hidden="true"></i> AUTOS</a></li>

@@ -1,13 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Kathy de los Santos Garcia">
         <title>Sistema - Nuevo Cliente</title>      
-        <%@include file="/WEB-INF/jspf/css2.jspf" %>    
+        <%@include file="/WEB-INF/jspf/css2.jspf" %>
     </head>
     <body>
         <%@include file="/WEB-INF/jspf/head2.jspf" %>
@@ -42,7 +42,7 @@
                                                 <li><a href="#clinatural"><span>CLIENTE NATURAL</span></a></li>
                                                 <li><a href="#clijuridico"><span>CLIENTE JURIDICO</span></a></li>
                                             </ul>
-                                            <form action="./ServletClienteGrabarNuevo" method="post" enctype="multipart/form-data">
+                                            <form action="./ServletUbigeoListarProvinciasdllX" method="post" enctype="multipart/form-data">
                                             <div id="clinatural">
                                                 <br>
                                                 <div class="row">
@@ -80,7 +80,7 @@
                                                         <label for="lblTipDoc">Tipo Documento:</label>
                                                     </div>
                                                     <div class="col-md-3" style="margin-left: 20px">
-                                                        <select class="form-control" name="ddlMarca">
+                                                        <select class="form-control" name="ddlTipDoc">
                                                             <option value="0" selected="selected">SELECCIONAR...</option>
                                                             <option value="1">DNI</option>
                                                             <option value="2">CARNET DE EXTRANJERIA</option>
@@ -90,7 +90,7 @@
                                                         <label for="lblNumDoc">Número Documento:</label>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <input type="text" class="form-control" id="txtTipDoc" name="txtTipDoc">
+                                                        <input type="text" class="form-control" id="txtNumDoc" name="txtNumDoc">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -109,21 +109,17 @@
                                                         <label for="lblPais">Pais:</label>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <select class="form-control" name="ddlPais">
-                                                            <option value="0" selected="selected">SELECCIONAR...</option>
-                                                            <option value="1">PERU</option>
-                                                            <option value="2">CHILE</option>
-                                                            <option value="2">ARGENTINA</option>
+                                                        <select class="form-control" name="ddlPais" id="ddlPais">
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-md-3" style="width: 150px; margin-left:30px">
-                                                        <label for="lblDireccion">Dirección:</label>
+                                                        <label for="lblDirec">Dirección:</label>
                                                     </div>
                                                     <div class="col-md-9" style="width: 605px; margin-left: 20px">
-                                                        <input type="text" class="form-control" id="txtDireccion" name="txtDireccion">
+                                                        <input type="text" class="form-control" id="txtDirec" name="txtDirec">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -131,35 +127,28 @@
                                                     <div class="col-md-3" style="width: 150px; margin-left:30px">
                                                         <label for="lblDep">Departamento:</label>
                                                     </div>
-                                                    <div class="col-md-3"style="margin-left: 20px">
-                                                        <select class="form-control" name="ddlClsCli">
-                                                            <option value="0" selected="selected">SELECCIONAR...</option>
-                                                            <option value="1">LIMA</option>
-                                                            <option value="2">AMAZONAS</option>
+                                                    <div class="col-md-3" style="margin-left: 20px">
+                                                        <select class="form-control" name="ddlDep" id="ddlDep">
+                                                            
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3" style="width: 175px; margin-left:20px">
-                                                        <label for="lblPais">Provincia:</label>
+                                                        <label for="lblProv">Provincia:</label>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <select class="form-control" name="ddlPais">
-                                                            <option value="0" selected="selected">SELECCIONAR...</option>
-                                                            <option value="1">lima</option>
-                                                            <option value="2">Barranca</option>
-                                                            <option value="2">Cañete</option>
+                                                        <select class="form-control" name="ddlProv" id="ddlProv">
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <br>
                                                 <div class="row">
                                                     <div class="col-md-3" style="width: 150px; margin-left:30px">
-                                                        <label for="lbldDis">Distrito:</label>
+                                                        <label for="lblDist">Distrito:</label>
                                                     </div>
                                                     <div class="col-md-3" style="margin-left: 20px">
-                                                        <select class="form-control" name="ddlDistrito">
-                                                            <option value="0" selected="selected">SELECCIONAR...</option>
-                                                            <option value="1">COMAS</option>
-                                                            <option value="2">BREÑA</option>
+                                                        <select class="form-control" name="ddlDist" id="ddlDist">
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
@@ -184,7 +173,7 @@
                                                         <label for="lblCorreo">Correo:</label>
                                                     </div>
                                                     <div class="col-md-7" style="width: 445px; margin-left: 20px">
-                                                        <input type="email" class="form-control" id="txtCorreo" name="Correo">
+                                                        <input type="email" class="form-control" id="txtCorreo" name="txtCorreo">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -196,7 +185,7 @@
                                                         <div class="row">
                                                             <div class="form-group">
                                                                 <div class='input-group date' id='datetimepicker1'>
-                                                                    <input type='text' class="form-control" />
+                                                                    <input type='text' class="form-control" name="txtfecnac"/>
                                                                     <span class="input-group-addon">
                                                                         <span class="glyphicon glyphicon-calendar"></span>
                                                                     </span>
@@ -357,5 +346,6 @@
         <%@include file="/WEB-INF/jspf/foot.jspf" %> 
         </div>
         <%@include file="/WEB-INF/jspf/js2.jspf" %>
+        <script src="../js/clientes.js" type="text/javascript"></script>
     </body>
 </html>

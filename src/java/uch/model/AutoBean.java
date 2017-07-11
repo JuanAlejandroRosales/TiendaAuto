@@ -1,6 +1,5 @@
 package uch.model;
 import java.io.Serializable;
-import java.sql.Date;
 
 public class AutoBean implements Serializable{
     

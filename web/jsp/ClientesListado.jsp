@@ -30,8 +30,8 @@
                     <div class="row">
                         <div class="col-md-2 col-md-offset-1">
                             <p>
-                                <a href="./producto.jsp">
-                                    <button class="btn btn-default">
+                                <a href="./ServletClienteVentanaNuevo">
+                                    <button class="btn btn-default" id="btnNuevoCli">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     Nuevo Cliente
                                     </button>

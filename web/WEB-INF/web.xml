@@ -4,6 +4,10 @@
         <servlet-name>ServletLogin</servlet-name>
         <servlet-class>uch.controller.ServletLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletUbigeo</servlet-name>
+        <servlet-class>uch.controller.ServletUbigeo</servlet-class>
+    </servlet>    
     <servlet-mapping>
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/ServletLogin</url-pattern>
@@ -52,6 +56,22 @@
         <servlet-name>ServletAuto</servlet-name>
         <url-pattern>/ServletAutoHome</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletUbigeo</servlet-name>
+        <url-pattern>/ServletUbigeoListarTodosdll</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletUbigeo</servlet-name>
+        <url-pattern>/ServletUbigeoListarDepertamentosdll</url-pattern>
+    </servlet-mapping>    
+    <servlet-mapping>
+        <servlet-name>ServletUbigeo</servlet-name>
+        <url-pattern>/ServletUbigeoListarProvinciasdll</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletUbigeo</servlet-name>
+        <url-pattern>/ServletUbigeoListarDistritosdll</url-pattern>
+    </servlet-mapping>    
     <welcome-file-list>         
         <welcome-file>index.html</welcome-file>  
     </welcome-file-list>

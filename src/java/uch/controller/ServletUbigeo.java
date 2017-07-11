@@ -1,6 +1,7 @@
 
 package uch.controller;
 
+import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,34 +21,45 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import uch.dao.AutoDao;
 import uch.dao.MarcaDao;
+import uch.dao.UbigeoDao;
 import uch.dao.funcAyuda;
 import uch.model.AutoBean;
 import uch.model.MarcaBean;
+import uch.model.UbigeoBean;
 
-@WebServlet(name = "ServletMarca", urlPatterns = {"/ServletMarcaListarTodos", "/ServletMarcaPaginar",
-    "/ServletMarcaVentanaNuevo", "/ServletMarcaGrabarNuevo",
-    "/ServletMarcaVentanaModificar","/ServletMarcaGrabarModificar", "/ServletMarcaListarTodosdll"})
+@WebServlet(name = "ServletUbigeo", urlPatterns = {"/ServletUbigeoListarTodos", "/ServletUbigeoPaginar",
+    "/ServletUbigeoVentanaNuevo", "/ServletUbigeoGrabarNuevo",
+    "/ServletUbigeoVentanaModificar","/ServletUbigeoGrabarModificar", "/ServletUbigeoListarTodosdll",
+    "/ServletUbigeoListarDepertamentosdll","/ServletUbigeoListarProvinciasdll", "/ServletUbigeoListarDistritosdll"})
 @MultipartConfig
-public class ServletMarca extends HttpServlet {
+public class ServletUbigeo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (
+            PrintWriter out = response.getWriter()) {
             String path = request.getServletPath(); //(urlPatterns) Que patron URL se esta solicitando.
-            if (path.equals("/ServletMarcaListarTodos")) {
+           
+            if (path.equals("/ServletUbigeoListarTodos")) {
                 listarTodos(request, response);
-            } else if (path.equals("/ServletMarcaPaginar")) {
+            } else if (path.equals("/ServletUbigeoPaginar")) {
                 paginar(request, response);
-            } else if (path.equals("/ServletMarcaVentanaNuevo")) {
+            } else if (path.equals("/ServletUbigeoVentanaNuevo")) {
                 ventanaNuevo(request, response);
-            } else if (path.equals("/ServletMarcaGrabarNuevo")) {
+            } else if (path.equals("/ServletUbigeoGrabarNuevo")) {
                 grabarNuevo(request, response);
-            } else if (path.equals("/ServletMarcaVentanaModificar")) {
+            } else if (path.equals("/ServletUbigeoVentanaModificar")) {
                 ventanaModificar(request, response);
-            }else if (path.equals("/ServletMarcaGrabarModificar")) {
+            }else if (path.equals("/ServletUbigeoGrabarModificar")) {
                 grabarModificar(request, response);
-            }else if (path.equals("/ServletMarcaListarTodosdll")) {
+            }else if (path.equals("/ServletUbigeoListarTodosdll")) {
                 listartodosdllNuevo(request, response);
+            }else if (path.equals("/ServletUbigeoListarDepertamentosdll")) {
+                listarDepartamentosdll(request, response);
+            }else if (path.equals("/ServletUbigeoListarProvinciasdll")) {
+                listarProvinciasdll(request, response);
+            }else if (path.equals("/ServletUbigeoListarDistritosdll")) {
+                listarDistritosdll(request, response);
             }
         }
     }
@@ -186,8 +198,8 @@ public class ServletMarca extends HttpServlet {
     
     private void listartodosdllNuevo(HttpServletRequest request, HttpServletResponse response) {
         try {
-            listarTodosdll(request, response);
-            request.getRequestDispatcher("/jsp/AutosNuevo.jsp").forward(request, response);
+            listarDepartamentosdll(request, response);
+            request.getRequestDispatcher("/jsp/ClientesNuevo.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
         }
@@ -204,8 +216,60 @@ public class ServletMarca extends HttpServlet {
             request.setAttribute("error", e.getMessage());
         }
     }
-
     
+    public void listarDepartamentosdll(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            PrintWriter out = response.getWriter();
+            UbigeoDao dao = new UbigeoDao();
+            List<UbigeoBean> listaD = new ArrayList<UbigeoBean>();
+            listaD = dao.listarDep();
+            request.setAttribute("listaD", listaD);
+            Gson n = new Gson();
+            String respuesta = n.toJson(listaD);
+            out.println(respuesta);
+        } catch (Exception e) {
+            request.setAttribute("error", e.getMessage());
+        }
+    }
+
+    public void listarProvinciasdll(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            PrintWriter out = response.getWriter();
+            UbigeoDao dao = new UbigeoDao();
+            List<UbigeoBean> listaP = new ArrayList<UbigeoBean>();
+            String ID_DEPARTAMENTO = request.getParameter("IDDep");
+            String strID_DEPARTAMENTO = ID_DEPARTAMENTO.substring(0, 2);
+            listaP = dao.listarProv(strID_DEPARTAMENTO);
+            request.setAttribute("listaP", listaP);
+            Gson n = new Gson();
+            String respuesta = n.toJson(listaP);
+            out.println(respuesta);
+        } catch (Exception e) {
+            request.setAttribute("error", e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void listarDistritosdll(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            PrintWriter out = response.getWriter();
+            UbigeoDao dao = new UbigeoDao();
+            List<UbigeoBean> listaDist = new ArrayList<UbigeoBean>();
+            String ID_DEPARTAMENTO = request.getParameter("IDDep");
+            String ID_PROVINCIA = request.getParameter("IDProv");
+            String strID_DEPARTAMENTO = ID_DEPARTAMENTO.substring(0, 2);
+            String strID_PROVINCIA = ID_PROVINCIA.substring(0, 2);
+            listaDist = dao.listarDist(strID_DEPARTAMENTO,strID_PROVINCIA);
+            request.setAttribute("listaDist", listaDist);
+            Gson n = new Gson();
+            String respuesta = n.toJson(listaDist);
+            out.println(respuesta);
+        } catch (Exception e) {
+            request.setAttribute("error", e.getMessage());
+            System.out.println(e.getMessage());
+        }
+    }    
+        
     private void paginar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
