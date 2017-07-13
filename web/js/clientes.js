@@ -88,10 +88,10 @@ $(document).ready(function () {
                 }
             },
             success:function(r){
-                alert(r);
+                //alert(r);
             //alert(JSON.stringify(r));
             var json = eval('('+r+')');
-                alert(json);
+                //alert(json);
             var combo = document.getElementById("ddlPais");
             combo.options[0] = new Option('Selecciona un item', '');
                 for(var i=0;i<json.length;i++){

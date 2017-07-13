@@ -13,7 +13,7 @@ $(document).ready(function () {
     
     $('#ddlMarca').change(function(){
         $('#txtModelo').removeAttr('disabled');
-        alert($('#ddlMarca').val());
+        //alert($('#ddlMarca').val());
     });     
 
     FiltrarNombresRazSoc();
@@ -151,7 +151,7 @@ function clean() {
   $('#txtModelo').val('');
   $('#txtPrecio').val('');
   $('#txtCantidad').val('');
-  $("#ddlMarca option[value=2]").attr("selected", "selected");
+  $("#ddlMarca option[value=' ']").attr("selected", "selected");
   //$('#txtCantidad').focus();
 }
 
