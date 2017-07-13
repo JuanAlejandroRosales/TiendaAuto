@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Kathy de los Santos Garcia">
         <title>Sistema - Inicio</title>      
-        <%@include file="/WEB-INF/jspf/css2.jspf" %>    
+        <%@include file="/WEB-INF/jspf/css2.jspf" %>
     </head>
     <body>
         <%@include file="/WEB-INF/jspf/head2.jspf" %>

@@ -8,7 +8,6 @@ $(document).ready(function () {
     $('#ddlProv').attr('disabled', 'disabled');
     $('#ddlDist').attr('disabled', 'disabled');
     
-    
     $("#txtTipCli").val('NATURAL');
     
     $( "#tabtipcli" ).click(function(){
