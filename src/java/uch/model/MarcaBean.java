@@ -1,55 +1,68 @@
-
 package uch.model;
 
 import java.io.Serializable;
 
 public class MarcaBean implements Serializable{
-    private String codigo;
-    private String nombre;
-    private String nacionalidad;
-    private String estado;
-    private String fecha_registro;
+    
+    private String ID_MARCA;
+    private String NOMBRE;
+    private String NACIONALIDAD;
+    private String ESTADO;
+    private String FECHA_REGISTRO;
+    private String USUARIO_REGISTRO;
     
     public MarcaBean(){    
     }
-
-    public String getCodigo() {
-        return codigo;
+    
+    public String getID_MARCA() {
+        return ID_MARCA;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setID_MARCA(String ID_MARCA) {
+        this.ID_MARCA = ID_MARCA;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNOMBRE() {
+        return NOMBRE;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNOMBRE(String NOMBRE) {
+        this.NOMBRE = NOMBRE;
     }
 
-    public String getNacionalidad() {
-        return nacionalidad;
+    public String getNACIONALIDAD() {
+        return NACIONALIDAD;
     }
 
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
+    public void setNACIONALIDAD(String NACIONALIDAD) {
+        this.NACIONALIDAD = NACIONALIDAD;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getESTADO() {
+        return ESTADO;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setESTADO(String ESTADO) {
+        this.ESTADO = ESTADO;
     }
 
-    public String getFecha_registro() {
-        return fecha_registro;
+    public String getFECHA_REGISTRO() {
+        return FECHA_REGISTRO;
     }
 
-    public void setFecha_registro(String fecha_registro) {
-        this.fecha_registro = fecha_registro;
+    public void setFECHA_REGISTRO(String FECHA_REGISTRO) {
+        this.FECHA_REGISTRO = FECHA_REGISTRO;
     }
+
+    public String getUSUARIO_REGISTRO() {
+        return USUARIO_REGISTRO;
+    }
+
+    public void setUSUARIO_REGISTRO(String USUARIO_REGISTRO) {
+        this.USUARIO_REGISTRO = USUARIO_REGISTRO;
+    }
+
+    
+
+    
 }

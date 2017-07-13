@@ -1,6 +1,7 @@
 
 package uch.controller;
 
+import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +29,7 @@ import uch.model.ClienteBean;
 @WebServlet(name = "ServletCliente", urlPatterns = {"/ServletClienteListarTodos", "/ServletClientePaginar",
     "/ServletClienteVentanaNuevo", "/ServletClienteGrabarNuevo",
     "/ServletClienteVentanaModificar","/ServletClienteGrabarModificar","/ServletClientePaginardll",
-    "/ServletClienteEliminar","/ServletClienteHome"})
+    "/ServletClienteEliminar","/ServletClienteHome","/ServletClienteListarNombresRazSoc"})
 @MultipartConfig
 public class ServletCliente extends HttpServlet {
 
@@ -57,6 +58,8 @@ public class ServletCliente extends HttpServlet {
                 Eliminar(request, response);
             } else if (path.equals("/ServletClienteHome")) {
                 ventanaHome(request, response);
+            } else if (path.equals("/ServletClienteListarNombresRazSoc")) {
+                listarNombres_RazSoc(request, response);
             }
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
@@ -73,12 +76,12 @@ public class ServletCliente extends HttpServlet {
             String strPrecio = request.getParameter("txtPrecio");
             String strStock = request.getParameter("txtStock");
             AutoBean auto = new AutoBean();
-            auto.setCodigo(strCodigo);
-            auto.setMarca(strMarca);
-            auto.setModelo(strModelo);
-            auto.setColor(strColor);
-            auto.setPrecio(Double.parseDouble(strPrecio));
-            auto.setStock(Integer.parseInt(strStock));
+            auto.setID_AUTOMOVIL(strCodigo);
+            auto.setID_MARCA(strMarca);
+            auto.setMODELO(strModelo);
+            auto.setCOLOR(strColor);
+            auto.setPRECIO(Double.parseDouble(strPrecio));
+            auto.setSTOCK(Integer.parseInt(strStock));
             AutoDao dao = new AutoDao();
             boolean resultado = dao.Actualizar(auto);
             if (resultado) {
@@ -116,7 +119,7 @@ public class ServletCliente extends HttpServlet {
             validar(request, response);
             String strId = request.getParameter("id");
             AutoBean auto = new AutoBean();
-            auto.setCodigo(strId);
+            auto.setID_AUTOMOVIL(strId);
             AutoDao dao = new AutoDao();
             boolean resultado = dao.Eliminar(auto);
             if (resultado) {
@@ -144,17 +147,17 @@ public class ServletCliente extends HttpServlet {
             String strSEG_NOMBRE = request.getParameter("txtSegNom");
             String strPRI_APELLIDO = request.getParameter("txtPriApell");
             String strSEG_APELLIDO = request.getParameter("txtSegApell");
-            String strRAZON_SOCIAL = request.getParameter("");
-            String strNOMBRE_COMERCIAL = request.getParameter("");
+            String strRAZON_SOCIAL = request.getParameter("txtRazSoc");
+            String strNOMBRE_COMERCIAL = request.getParameter("txtNomCom");
             String strTIPO_DOCUMENTO = request.getParameter("ddlTipDoc");
             String strNUMERO_DOCUMENTO = request.getParameter("txtNumDoc");
-            String strNUMERO_RUC = request.getParameter("");
+            String strNUMERO_RUC = request.getParameter("txtRuc");
             String strFECHA_NACIMIENTO = request.getParameter("txtfecnac");
-            String strTIPO_CLIENTE = request.getParameter("");
+            String strTIPO_CLIENTE = request.getParameter("txtTipCli");
             String strCLASE_CLIENTE = request.getParameter("ddlClsCli");
-            String strID_UBIGEO = request.getParameter("");
-            String strDIRECCION = request.getParameter("txtDireccion");
-            String strID_PAIS = request.getParameter("ddlPais");
+            String strID_UBIGEO = request.getParameter("txtUbigeo");
+            String strDIRECCION = request.getParameter("txtDirec");
+            String strID_PAIS = request.getParameter("txtPaisCli");
             String strTELEFONO_FIJO = request.getParameter("txtTelefono");
             String strCELULAR = request.getParameter("txtCelular");
             String strEMAIL = request.getParameter("txtCorreo");
@@ -163,7 +166,7 @@ public class ServletCliente extends HttpServlet {
             String strFECHA_REGISTRO = Integer.toString(c.get(Calendar.DATE))+"/"+
                                        Integer.toString(c.get(Calendar.MONTH)+1)+"/"+
                                        Integer.toString(c.get(Calendar.YEAR));
-            String strUSUARIO_REGISTRO = request.getParameter("txtStock");
+            String strUSUARIO_REGISTRO = request.getParameter("txtUsuario");
             ClienteBean CLIENTE = new ClienteBean();
             CLIENTE.setID_CLIENTE(strID_CLIENTE);
             CLIENTE.setPRI_NOMBRE(strPRI_NOMBRE);
@@ -188,7 +191,6 @@ public class ServletCliente extends HttpServlet {
             CLIENTE.setESTADO(strESTADO);
             CLIENTE.setFECHA_REGISTRO(strFECHA_REGISTRO);
             CLIENTE.setUSUARIO_REGISTRO(strUSUARIO_REGISTRO);
-            
             
             boolean resultado = dao.Insertar(CLIENTE);
             if (resultado) {
@@ -294,6 +296,24 @@ public class ServletCliente extends HttpServlet {
             request.setAttribute("error", e.getMessage());
         }
     }
+
+    public void listarNombres_RazSoc(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            PrintWriter out = response.getWriter();
+            ClienteDao dao = new ClienteDao();
+            String strNombres_Razsoc = request.getParameter("Nombres_RazSoc");
+            List<ClienteBean> listaNR = new ArrayList<ClienteBean>();
+            listaNR = dao.listarNombres_RazSoc(strNombres_Razsoc);
+            request.setAttribute("listaNR", listaNR);
+            Gson n = new Gson();
+            String respuesta = n.toJson(listaNR);
+            out.println(respuesta);
+            out.close();
+        } catch (Exception e) {
+            request.setAttribute("error", e.getMessage());
+        }
+    }
+
     
     private void paginar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

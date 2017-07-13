@@ -13,7 +13,7 @@
                                request.getContextPath()%>/ServletAutoPaginar"><i class="fa fa-car" aria-hidden="true"></i> AUTOS</a></li>
     <li id="bt3"><a href="http://<%=request.getServerName() + ':' + 
                                request.getServerPort() + 
-                               request.getContextPath()%>/jsp/RealizarVentas.jsp"><span class="glyphicon glyphicon-list-alt"></span> VENTAS</a></li>
+                               request.getContextPath()%>/jsp/VentaListado.jsp"><span class="glyphicon glyphicon-list-alt"></span> VENTAS</a></li>
     <li id="bt4"><a href="http://<%=request.getServerName() + ':' + 
                                request.getServerPort() + 
                                request.getContextPath()%>/jsp/ProveedoresListado.jsp"><span class="glyphicon glyphicon-briefcase"></span> PROVEEDORES</a></li>

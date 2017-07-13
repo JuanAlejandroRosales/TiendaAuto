@@ -238,3 +238,13 @@ input.favorite{
   margin: 15px 15px 0px 15px;  
 }
 
+.cabnewcli {
+    text-align: center;
+    color: black;
+    font-size: 2em;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+    background-position: center;
+    align-content: center;
+}
+

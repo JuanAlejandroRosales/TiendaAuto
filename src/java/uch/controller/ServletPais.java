@@ -1,3 +1,4 @@
+
 package uch.controller;
 
 import com.google.gson.Gson;
@@ -21,41 +22,45 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import uch.dao.AutoDao;
 import uch.dao.ClienteDao;
+import uch.dao.PaisDao;
 import uch.dao.funcAyuda;
 import uch.model.AutoBean;
+import uch.model.PaisBean;
 import uch.model.ClienteBean;
 
-@WebServlet(name = "ServletAuto", urlPatterns = {"/ServletAutoListarTodos", "/ServletAutoPaginar",
-    "/ServletAutoVentanaNuevo", "/ServletAutoGrabarNuevo",
-    "/ServletAutoVentanaModificar","/ServletAutoGrabarModificar","/ServletAutoPaginardll",
-    "/ServletAutoEliminar","/ServletAutoHome","/ServletClienteListarModelos"})
+@WebServlet(name = "ServletPais", urlPatterns = {"/ServletPaisListarTodos", "/ServletPaisPaginar",
+    "/ServletPaisVentanaNuevo", "/ServletPaisGrabarNuevo",
+    "/ServletPaisVentanaModificar","/ServletPaisGrabarModificar","/ServletPaisPaginardll",
+    "/ServletPaisEliminar","/ServletPaisHome","/ServletPaisListarTodosDll"})
 @MultipartConfig
-public class ServletAuto extends HttpServlet {
+public class ServletPais extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (
+            PrintWriter out = response.getWriter()) {
             String path = request.getServletPath(); //(urlPatterns) Que patron URL se esta solicitando.
-            if (path.equals("/ServletAutoListarTodos")) {
+            if (path.equals("/ServletPaisListarTodos")) {
                 listarTodos(request, response);
-            }else if (path.equals("/ServletAutoPaginar")) {
+            }else if (path.equals("/ServletPaisPaginar")) {
                 paginar(request, response);
-            }else if (path.equals("/ServletAutoPaginardll")) {
+            }else if (path.equals("/ServletPaisPaginardll")) {
                 paginardll(request, response);
-            }else if (path.equals("/ServletAutoVentanaNuevo")) {
+            }else if (path.equals("/ServletPaisVentanaNuevo")) {
                 ventanaNuevo(request, response);
-            }else if (path.equals("/ServletAutoGrabarNuevo")) {
+            }else if (path.equals("/ServletPaisGrabarNuevo")) {
                 grabarNuevo(request, response);
-            }else if (path.equals("/ServletAutoVentanaModificar")) {
+            }else if (path.equals("/ServletPaisVentanaModificar")) {
                 ventanaModificar(request, response);
-            }else if (path.equals("/ServletAutoGrabarModificar")) {
+            }else if (path.equals("/ServletPaisGrabarModificar")) {
                 grabarModificar(request, response);
-            }else if (path.equals("/ServletAutoEliminar")) {
+            }else if (path.equals("/ServletPaisEliminar")) {
                 Eliminar(request, response);
-            }else if (path.equals("/ServletAutoHome")) {
+            }else if (path.equals("/ServletPaisHome")) {
                 ventanaHome(request, response);
-            }else if (path.equals("/ServletClienteListarModelos")) {
-                listarModelos(request, response);
+            }else if (path.equals("/ServletPaisListarTodosDll")) {
+                listarTodosPaisDll(request, response);
             }
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
@@ -135,39 +140,67 @@ public class ServletAuto extends HttpServlet {
         try {
             validar(request, response);
             Calendar c = Calendar.getInstance();
-            AutoDao dao = new AutoDao();
+            ClienteDao dao = new ClienteDao();
             String codigo = null;
             codigo = dao.generarcodigo();
-            String strCodigo = codigo.toString();
-            String strMarca = request.getParameter("ddlMarca");
-            String strModelo = request.getParameter("txtModelo");
-            String strColor = request.getParameter("txtColor");
-            String strPrecio = request.getParameter("txtPrecio");
-            String strStock = request.getParameter("txtStock");
-            String strEstado = "A";
-            String strFecha_Registro = Integer.toString(c.get(Calendar.DATE))+"/"+
+            String strID_CLIENTE = codigo.toString();
+            String strPRI_NOMBRE = request.getParameter("txtPriNom");
+            String strSEG_NOMBRE = request.getParameter("txtSegNom");
+            String strPRI_APELLIDO = request.getParameter("txtPriApell");
+            String strSEG_APELLIDO = request.getParameter("txtSegApell");
+            String strRAZON_SOCIAL = request.getParameter("");
+            String strNOMBRE_COMERCIAL = request.getParameter("");
+            String strTIPO_DOCUMENTO = request.getParameter("ddlTipDoc");
+            String strNUMERO_DOCUMENTO = request.getParameter("txtNumDoc");
+            String strNUMERO_RUC = request.getParameter("");
+            String strFECHA_NACIMIENTO = request.getParameter("txtfecnac");
+            String strTIPO_CLIENTE = request.getParameter("");
+            String strCLASE_CLIENTE = request.getParameter("ddlClsCli");
+            String strID_UBIGEO = request.getParameter("");
+            String strDIRECCION = request.getParameter("txtDireccion");
+            String strID_PAIS = request.getParameter("ddlPais");
+            String strTELEFONO_FIJO = request.getParameter("txtTelefono");
+            String strCELULAR = request.getParameter("txtCelular");
+            String strEMAIL = request.getParameter("txtCorreo");
+            String strSEXO = request.getParameter("radio-1");
+            String strESTADO = "A";
+            String strFECHA_REGISTRO = Integer.toString(c.get(Calendar.DATE))+"/"+
                                        Integer.toString(c.get(Calendar.MONTH)+1)+"/"+
                                        Integer.toString(c.get(Calendar.YEAR));
-            String strUSUARIO_REGISTRO = request.getParameter("txtUsuario");
-            AutoBean auto = new AutoBean();
-            auto.setID_AUTOMOVIL(strCodigo);
-            auto.setID_MARCA(strMarca);
-            auto.setMODELO(strModelo);
-            auto.setCOLOR(strColor);
-            auto.setPRECIO(Double.parseDouble(strPrecio));
-            auto.setSTOCK(Integer.parseInt(strStock));
-            auto.setESTADO(strEstado);
-            auto.setFECHA_REGISTRO(strFecha_Registro);
-            auto.setUSUARIO_REGISTRO(strUSUARIO_REGISTRO);
+            String strUSUARIO_REGISTRO = request.getParameter("txtStock");
+            ClienteBean CLIENTE = new ClienteBean();
+            CLIENTE.setID_CLIENTE(strID_CLIENTE);
+            CLIENTE.setPRI_NOMBRE(strPRI_NOMBRE);
+            CLIENTE.setSEG_NOMBRE(strSEG_NOMBRE);
+            CLIENTE.setPRI_APELLIDO(strPRI_APELLIDO);
+            CLIENTE.setSEG_APELLIDO(strSEG_APELLIDO);
+            CLIENTE.setRAZON_SOCIAL(strRAZON_SOCIAL);
+            CLIENTE.setNOMBRE_COMERCIAL(strNOMBRE_COMERCIAL);
+            CLIENTE.setTIPO_DOCUMENTO(strTIPO_DOCUMENTO);
+            CLIENTE.setNUMERO_DOCUMENTO(strNUMERO_DOCUMENTO);
+            CLIENTE.setNUMERO_RUC(strNUMERO_RUC);
+            CLIENTE.setFECHA_NACIMIENTO(strFECHA_NACIMIENTO);
+            CLIENTE.setTIPO_CLIENTE(strTIPO_CLIENTE);
+            CLIENTE.setCLASE_CLIENTE(strCLASE_CLIENTE);
+            CLIENTE.setID_UBIGEO(strID_UBIGEO);
+            CLIENTE.setDIRECCION(strDIRECCION);
+            CLIENTE.setID_PAIS(strID_PAIS);
+            CLIENTE.setTELEFONO_FIJO(strTELEFONO_FIJO);
+            CLIENTE.setCELULAR(strCELULAR);
+            CLIENTE.setEMAIL(strEMAIL);
+            CLIENTE.setSEXO(strSEXO);
+            CLIENTE.setESTADO(strESTADO);
+            CLIENTE.setFECHA_REGISTRO(strFECHA_REGISTRO);
+            CLIENTE.setUSUARIO_REGISTRO(strUSUARIO_REGISTRO);
             
-            boolean resultado = dao.Insertar(auto);
+            
+            boolean resultado = dao.Insertar(CLIENTE);
             if (resultado) {
                 request.setAttribute("error", "");
-                subirarchivo(request, response, strCodigo);
                 paginar(request, response);
                 
             } else {
-                request.setAttribute("error", "El Auto " + strCodigo + " no se puede adicionar");
+                request.setAttribute("error", "EL CLIENTE " + strID_CLIENTE + " NO SE PUEDE ADICIONAR");
                
                 ventanaNuevo(request, response);
                 
@@ -207,7 +240,7 @@ public class ServletAuto extends HttpServlet {
     private void ventanaNuevo(HttpServletRequest request, HttpServletResponse response) {
         try {
             validar(request, response);
-            request.getRequestDispatcher("/jsp/AutosNuevo.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp/ClientesNuevo.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
         }
@@ -265,24 +298,21 @@ public class ServletAuto extends HttpServlet {
             request.setAttribute("error", e.getMessage());
         }
     }
-
-    public void listarModelos(HttpServletRequest request, HttpServletResponse response) {
+    
+    private void listarTodosPaisDll(HttpServletRequest request, HttpServletResponse response) {
         try {
             PrintWriter out = response.getWriter();
-            AutoDao dao = new AutoDao();
-            String strID_MARCA = request.getParameter("ID_MARCA");
-            String strMODELO = request.getParameter("MODELO");
-            List<AutoBean> listarM = new ArrayList<AutoBean>();
-            listarM = dao.listarModelos(strID_MARCA, strMODELO);
-            request.setAttribute("listarM", listarM);
+            PaisDao dao = new PaisDao();
+            List<PaisBean> listaPaises = new ArrayList<PaisBean>();
+            listaPaises = dao.listarPaisDll();
+            request.setAttribute("listaPaises", listaPaises);
             Gson n = new Gson();
-            String respuesta = n.toJson(listarM);
+            String respuesta = n.toJson(listaPaises);
             out.println(respuesta);
-            out.close();
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
         }
-    }
+    }    
     
     private void paginar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -321,10 +351,9 @@ public class ServletAuto extends HttpServlet {
             request.setAttribute("paginaNext", paginaSiguiente);
             request.setAttribute("paginaFinal", paginaFinal);
             request.setAttribute("lista", lista);
-            request.getRequestDispatcher("/jsp/AutosListado.jsp").forward(request, response);
+            request.getRequestDispatcher("/jsp/ClientesListado.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/jsp/Error.jsp").forward(request, response);
         }
     }
     
@@ -387,7 +416,8 @@ public class ServletAuto extends HttpServlet {
         } catch (Exception e) {
             request.setAttribute("error", e.getMessage());
         }
-    }
+    }        
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

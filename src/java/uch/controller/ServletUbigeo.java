@@ -1,4 +1,3 @@
-
 package uch.controller;
 
 import com.google.gson.Gson;
@@ -73,12 +72,12 @@ public class ServletUbigeo extends HttpServlet {
             String strPrecio = request.getParameter("txtPrecio");
             String strStock = request.getParameter("txtStock");
             AutoBean auto = new AutoBean();
-            auto.setCodigo(strCodigo);
-            auto.setMarca(strMarca);
-            auto.setModelo(strModelo);
-            auto.setColor(strColor);
-            auto.setPrecio(Integer.parseInt(strPrecio));
-            auto.setStock(Integer.parseInt(strStock));
+            auto.setID_AUTOMOVIL(strCodigo);
+            auto.setID_MARCA(strMarca);
+            auto.setMODELO(strModelo);
+            auto.setCOLOR(strColor);
+            auto.setPRECIO(Integer.parseInt(strPrecio));
+            auto.setSTOCK(Integer.parseInt(strStock));
             AutoDao dao = new AutoDao();
             boolean resultado = dao.Actualizar(auto);
             if (resultado) {
@@ -124,14 +123,14 @@ public class ServletUbigeo extends HttpServlet {
                                        Integer.toString(c.get(Calendar.MONTH)+1)+"/"+
                                        Integer.toString(c.get(Calendar.YEAR));
             AutoBean auto = new AutoBean();
-            auto.setCodigo(strCodigo);
-            auto.setMarca(strMarca);
-            auto.setModelo(strModelo);
-            auto.setColor(strColor);
-            auto.setPrecio(Double.parseDouble(strPrecio));
-            auto.setStock(Integer.parseInt(strStock));
-            auto.setEstado(strEstado);
-            auto.setFecha_registro(strFecha_Registro);
+            auto.setID_AUTOMOVIL(strCodigo);
+            auto.setID_MARCA(strMarca);
+            auto.setMODELO(strModelo);
+            auto.setCOLOR(strColor);
+            auto.setPRECIO(Double.parseDouble(strPrecio));
+            auto.setSTOCK(Integer.parseInt(strStock));
+            auto.setESTADO(strEstado);
+            auto.setFECHA_REGISTRO(strFecha_Registro);
             
             boolean resultado = dao.Insertar(auto);
             if (resultado) {
@@ -258,7 +257,7 @@ public class ServletUbigeo extends HttpServlet {
             String ID_DEPARTAMENTO = request.getParameter("IDDep");
             String ID_PROVINCIA = request.getParameter("IDProv");
             String strID_DEPARTAMENTO = ID_DEPARTAMENTO.substring(0, 2);
-            String strID_PROVINCIA = ID_PROVINCIA.substring(0, 2);
+            String strID_PROVINCIA = ID_PROVINCIA.substring(2, 4);
             listaDist = dao.listarDist(strID_DEPARTAMENTO,strID_PROVINCIA);
             request.setAttribute("listaDist", listaDist);
             Gson n = new Gson();

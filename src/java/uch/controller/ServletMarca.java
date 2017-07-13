@@ -1,6 +1,7 @@
 
 package uch.controller;
 
+import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,7 +48,7 @@ public class ServletMarca extends HttpServlet {
             }else if (path.equals("/ServletMarcaGrabarModificar")) {
                 grabarModificar(request, response);
             }else if (path.equals("/ServletMarcaListarTodosdll")) {
-                listartodosdllNuevo(request, response);
+                listarTodosdllAjax(request, response);
             }
         }
     }
@@ -61,12 +62,12 @@ public class ServletMarca extends HttpServlet {
             String strPrecio = request.getParameter("txtPrecio");
             String strStock = request.getParameter("txtStock");
             AutoBean auto = new AutoBean();
-            auto.setCodigo(strCodigo);
-            auto.setMarca(strMarca);
-            auto.setModelo(strModelo);
-            auto.setColor(strColor);
-            auto.setPrecio(Integer.parseInt(strPrecio));
-            auto.setStock(Integer.parseInt(strStock));
+            auto.setID_AUTOMOVIL(strCodigo);
+            auto.setID_MARCA(strMarca);
+            auto.setMODELO(strModelo);
+            auto.setCOLOR(strColor);
+            auto.setPRECIO(Integer.parseInt(strPrecio));
+            auto.setSTOCK(Integer.parseInt(strStock));
             AutoDao dao = new AutoDao();
             boolean resultado = dao.Actualizar(auto);
             if (resultado) {
@@ -112,14 +113,14 @@ public class ServletMarca extends HttpServlet {
                                        Integer.toString(c.get(Calendar.MONTH)+1)+"/"+
                                        Integer.toString(c.get(Calendar.YEAR));
             AutoBean auto = new AutoBean();
-            auto.setCodigo(strCodigo);
-            auto.setMarca(strMarca);
-            auto.setModelo(strModelo);
-            auto.setColor(strColor);
-            auto.setPrecio(Double.parseDouble(strPrecio));
-            auto.setStock(Integer.parseInt(strStock));
-            auto.setEstado(strEstado);
-            auto.setFecha_registro(strFecha_Registro);
+            auto.setID_AUTOMOVIL(strCodigo);
+            auto.setID_MARCA(strMarca);
+            auto.setMODELO(strModelo);
+            auto.setCOLOR(strColor);
+            auto.setPRECIO(Double.parseDouble(strPrecio));
+            auto.setSTOCK(Integer.parseInt(strStock));
+            auto.setESTADO(strEstado);
+            auto.setFECHA_REGISTRO(strFecha_Registro);
             
             boolean resultado = dao.Insertar(auto);
             if (resultado) {
@@ -205,6 +206,22 @@ public class ServletMarca extends HttpServlet {
         }
     }
 
+    public void listarTodosdllAjax(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            PrintWriter out = response.getWriter();
+            MarcaDao dao = new MarcaDao();
+            List<MarcaBean> listaM = new ArrayList<MarcaBean>();
+            listaM = dao.listarddl();
+            request.setAttribute("listaM", listaM);
+            Gson n = new Gson();
+            String respuesta = n.toJson(listaM);
+            out.println(respuesta);
+            out.close();
+            //request.getRequestDispatcher("/jsp/AutosNuevo.jsp").forward(request, response);
+        } catch (Exception e) {
+            request.setAttribute("error", e.getMessage());
+        }
+    }
     
     private void paginar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

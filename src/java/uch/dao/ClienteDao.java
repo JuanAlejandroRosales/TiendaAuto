@@ -22,13 +22,13 @@ public class ClienteDao {
             ResultSet rs = cstm.executeQuery();
             while (rs.next()) {
                 AutoBean t = new AutoBean();
-                t.setCodigo(rs.getString("ID_AUTOMOVIL"));
-                t.setMarca(rs.getString("ID_MARCA"));
-                t.setModelo(rs.getString("MODELO"));
-                t.setColor(rs.getString("COLOR"));
-                t.setPrecio(rs.getDouble("PRECIO"));
-                t.setStock(rs.getInt("STOCK"));
-                t.setEstado(rs.getString("ESTADO"));
+                t.setID_AUTOMOVIL(rs.getString("ID_AUTOMOVIL"));
+                t.setID_MARCA(rs.getString("ID_MARCA"));
+                t.setMODELO(rs.getString("MODELO"));
+                t.setCOLOR(rs.getString("COLOR"));
+                t.setPRECIO(rs.getDouble("PRECIO"));
+                t.setSTOCK(rs.getInt("STOCK"));
+                t.setESTADO(rs.getString("ESTADO"));
                 lista.add(t);
             }
             cstm.close();
@@ -50,13 +50,13 @@ public class ClienteDao {
             ResultSet rs = cstm.executeQuery();
             while (rs.next()) {
                 AutoBean t = new AutoBean();
-                t.setCodigo(rs.getString("ID_AUTOMOVIL"));
-                t.setMarca(rs.getString("ID_MARCA"));
-                t.setModelo(rs.getString("MODELO"));
-                t.setColor(rs.getString("COLOR"));
-                t.setPrecio(rs.getDouble("PRECIO"));
-                t.setStock(rs.getInt("STOCK"));
-                t.setEstado(rs.getString("ESTADO"));
+                t.setID_AUTOMOVIL(rs.getString("ID_AUTOMOVIL"));
+                t.setID_MARCA(rs.getString("ID_MARCA"));
+                t.setMODELO(rs.getString("MODELO"));
+                t.setCOLOR(rs.getString("COLOR"));
+                t.setPRECIO(rs.getDouble("PRECIO"));
+                t.setSTOCK(rs.getInt("STOCK"));
+                t.setESTADO(rs.getString("ESTADO"));
                 lista.add(t);
             }
             cstm.close();
@@ -77,13 +77,13 @@ public class ClienteDao {
             ResultSet rs = cstm.executeQuery();
             while (rs.next()) {
                 AutoBean t = new AutoBean();
-                t.setCodigo(rs.getString("ID_AUTOMOVIL"));
-                t.setMarca(rs.getString("ID_MARCA"));
-                t.setModelo(rs.getString("MODELO"));
-                t.setColor(rs.getString("COLOR"));
-                t.setPrecio(rs.getDouble("PRECIO"));
-                t.setStock(rs.getInt("STOCK"));
-                t.setEstado(rs.getString("ESTADO"));
+                t.setID_AUTOMOVIL(rs.getString("ID_AUTOMOVIL"));
+                t.setID_MARCA(rs.getString("ID_MARCA"));
+                t.setMODELO(rs.getString("MODELO"));
+                t.setCOLOR(rs.getString("COLOR"));
+                t.setPRECIO(rs.getDouble("PRECIO"));
+                t.setSTOCK(rs.getInt("STOCK"));
+                t.setESTADO(rs.getString("ESTADO"));
                 lista.add(t);
             }
             cstm.close();
@@ -93,14 +93,36 @@ public class ClienteDao {
         return lista;
     }
    
-    
+    public List<ClienteBean> listarNombres_RazSoc(String Nombres_RazSoc) throws SQLException {
+        Connection cn = null;
+        List<ClienteBean> lista = new ArrayList<ClienteBean>();
+        try {
+            cn = ConexionBD.getConnection();
+            String sql = "{CALL USP_FILTRAR_CLIENTE(?)}";
+            CallableStatement cstm = cn.prepareCall(sql);
+            cstm.setString(1, Nombres_RazSoc);
+            ResultSet rs = cstm.executeQuery();
+            while (rs.next()) {
+                ClienteBean t = new ClienteBean();
+                t.setID_CLIENTE(rs.getString("ID_CLIENTE"));
+                t.setNOMBRES_RAZSOC(rs.getString("NOMBRES_RAZSOC"));
+                t.setDNIRUC(rs.getString("DNIRUC"));
+                t.setDIRECCION(rs.getString("DIRECCION"));
+                lista.add(t);
+            }
+            cstm.close();
+        } catch (SQLException e) {
+            throw e;
+        }
+        return lista;
+    }    
    
     public String generarcodigo() throws SQLException {
         Connection cn = null;
         String codigo = null;
         try {
             cn = ConexionBD.getConnection();
-            String sql = "{call USP_GENERARCODIGOCLIENTE()}";
+            String sql = "{CALL USP_GENERARCODIGOCLIENTE()}";
             CallableStatement cstm = cn.prepareCall(sql);
             ResultSet rs = cstm.executeQuery();
             if (rs.next()) {
@@ -197,14 +219,14 @@ public class ClienteDao {
             cstm.setString(1, Id);
             ResultSet rs = cstm.executeQuery();
             while (rs.next()) {                
-                auto.setCodigo(rs.getString("ID_AUTOMOVIL"));
-                auto.setMarca(rs.getString("ID_MARCA"));
-                auto.setModelo(rs.getString("MODELO"));                
-                auto.setColor(rs.getString("COLOR"));
-                auto.setPrecio(rs.getInt("PRECIO"));
-                auto.setStock(rs.getInt("STOCK"));
-                auto.setEstado(rs.getString("ESTADO"));
-                auto.setFecha_registro(rs.getString("FECHA_REGISTRO"));
+                auto.setID_AUTOMOVIL(rs.getString("ID_AUTOMOVIL"));
+                auto.setID_MARCA(rs.getString("ID_MARCA"));
+                auto.setMODELO(rs.getString("MODELO"));                
+                auto.setCOLOR(rs.getString("COLOR"));
+                auto.setPRECIO(rs.getInt("PRECIO"));
+                auto.setSTOCK(rs.getInt("STOCK"));
+                auto.setESTADO(rs.getString("ESTADO"));
+                auto.setFECHA_REGISTRO(rs.getString("FECHA_REGISTRO"));
             }
             cstm.close();
         } catch (SQLException e1) {
@@ -225,12 +247,12 @@ public class ClienteDao {
             cn = ConexionBD.getConnection();
             String sql = "{call USP_UPDATE_AUTOMOVIL(?,?,?,?,?,?)}";
             CallableStatement cstm = cn.prepareCall(sql);
-            cstm.setString(1,auto.getCodigo());
-            cstm.setString(2,auto.getMarca());
-            cstm.setString(3,auto.getModelo());
-            cstm.setString(4,auto.getColor());
-            cstm.setDouble(5,auto.getPrecio());
-            cstm.setInt(6,auto.getStock());
+            cstm.setString(1,auto.getID_AUTOMOVIL());
+            cstm.setString(2,auto.getID_MARCA());
+            cstm.setString(3,auto.getMODELO());
+            cstm.setString(4,auto.getCOLOR());
+            cstm.setDouble(5,auto.getPRECIO());
+            cstm.setInt(6,auto.getSTOCK());
             rpta = cstm.executeUpdate() == 1 ? true : false;
             cstm.close();
         } catch (SQLException e) {
@@ -251,7 +273,7 @@ public class ClienteDao {
             cn = ConexionBD.getConnection();
             String sql = "{call USP_DELETE_AUTOMOVIL(?)}";
             CallableStatement cstm = cn.prepareCall(sql);
-            cstm.setString(1,auto.getCodigo());
+            cstm.setString(1,auto.getID_AUTOMOVIL());
             rpta = cstm.executeUpdate() == 1 ? true : false;
             cstm.close();
         } catch (SQLException e) {

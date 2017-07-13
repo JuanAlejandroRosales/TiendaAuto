@@ -6,3 +6,4 @@
 <link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/free-jqgrid-4.14.1-pre/ui.jqgrid.css" rel="stylesheet" type="text/css"/>
 <link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/estilos.css" rel="stylesheet" type="text/css"/>
+<link href="http://<%=request.getServerName() + ':' + request.getServerPort() + request.getContextPath()%>/css/main.css" rel="stylesheet" type="text/css"/>

@@ -2,82 +2,94 @@ package uch.model;
 import java.io.Serializable;
 
 public class AutoBean implements Serializable{
-    
-    private String codigo;
-    private String marca;
-    private String modelo;
-    private String color;
-    private double precio;
-    private int stock;
-    private String estado;
-    private String fecha_registro;
+
+    private String ID_AUTOMOVIL;
+    private String ID_MARCA;
+    private String MODELO;
+    private String COLOR;
+    private double PRECIO;
+    private int STOCK;
+    private String ESTADO;
+    private String FECHA_REGISTRO;
+    private String USUARIO_REGISTRO;
     
     public AutoBean(){    
     }
-
-    public String getCodigo() {
-        return codigo;
+    
+    public String getID_AUTOMOVIL() {
+        return ID_AUTOMOVIL;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setID_AUTOMOVIL(String ID_AUTOMOVIL) {
+        this.ID_AUTOMOVIL = ID_AUTOMOVIL;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getID_MARCA() {
+        return ID_MARCA;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setID_MARCA(String ID_MARCA) {
+        this.ID_MARCA = ID_MARCA;
     }
 
-    public String getModelo() {
-        return modelo;
+    public String getMODELO() {
+        return MODELO;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
+    public void setMODELO(String MODELO) {
+        this.MODELO = MODELO;
     }
 
-    public String getColor() {
-        return color;
+    public String getCOLOR() {
+        return COLOR;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setCOLOR(String COLOR) {
+        this.COLOR = COLOR;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getPRECIO() {
+        return PRECIO;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setPRECIO(double PRECIO) {
+        this.PRECIO = PRECIO;
     }
 
-    public int getStock() {
-        return stock;
+    public int getSTOCK() {
+        return STOCK;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setSTOCK(int STOCK) {
+        this.STOCK = STOCK;
+    }
+
+    public String getESTADO() {
+        return ESTADO;
+    }
+
+    public void setESTADO(String ESTADO) {
+        this.ESTADO = ESTADO;
+    }
+
+    public String getFECHA_REGISTRO() {
+        return FECHA_REGISTRO;
+    }
+
+    public void setFECHA_REGISTRO(String FECHA_REGISTRO) {
+        this.FECHA_REGISTRO = FECHA_REGISTRO;
+    }
+
+    public String getUSUARIO_REGISTRO() {
+        return USUARIO_REGISTRO;
+    }
+
+    public void setUSUARIO_REGISTRO(String USUARIO_REGISTRO) {
+        this.USUARIO_REGISTRO = USUARIO_REGISTRO;
     }
     
-    public String getEstado() {
-        return estado;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 
-    public String getFecha_registro() {
-        return fecha_registro;
-    }
-
-    public void setFecha_registro(String fecha_registro) {
-        this.fecha_registro = fecha_registro;
-    }
     
     
     

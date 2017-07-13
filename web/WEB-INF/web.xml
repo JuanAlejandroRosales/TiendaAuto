@@ -7,7 +7,7 @@
     <servlet>
         <servlet-name>ServletUbigeo</servlet-name>
         <servlet-class>uch.controller.ServletUbigeo</servlet-class>
-    </servlet>    
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/ServletLogin</url-pattern>
@@ -41,6 +41,10 @@
         <url-pattern>/ServletAutoGrabarModificar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletAuto</servlet-name>
+        <url-pattern>/ServletClienteListarModelos</url-pattern>
+    </servlet-mapping>    
+    <servlet-mapping>
         <servlet-name>ServletMarca</servlet-name>
         <url-pattern>/ServletMarcaListarTodosdll</url-pattern>
     </servlet-mapping>
@@ -57,13 +61,29 @@
         <url-pattern>/ServletAutoHome</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletCliente</servlet-name>
+        <url-pattern>/ServletClienteVentanaNuevo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCliente</servlet-name>
+        <url-pattern>/ServletClientePaginar</url-pattern>
+    </servlet-mapping>        
+    <servlet-mapping>
+        <servlet-name>ServletCliente</servlet-name>
+        <url-pattern>/ServletClienteListarNombresRazSoc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCliente</servlet-name>
+        <url-pattern>/ServletClienteGrabarNuevo</url-pattern>
+    </servlet-mapping>         
+    <servlet-mapping>
         <servlet-name>ServletUbigeo</servlet-name>
         <url-pattern>/ServletUbigeoListarTodosdll</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletUbigeo</servlet-name>
         <url-pattern>/ServletUbigeoListarDepertamentosdll</url-pattern>
-    </servlet-mapping>    
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletUbigeo</servlet-name>
         <url-pattern>/ServletUbigeoListarProvinciasdll</url-pattern>
@@ -71,13 +91,17 @@
     <servlet-mapping>
         <servlet-name>ServletUbigeo</servlet-name>
         <url-pattern>/ServletUbigeoListarDistritosdll</url-pattern>
-    </servlet-mapping>    
-    <welcome-file-list>         
-        <welcome-file>index.html</welcome-file>  
-    </welcome-file-list>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPais</servlet-name>
+        <url-pattern>/ServletPaisListarTodosDll</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 </web-app>

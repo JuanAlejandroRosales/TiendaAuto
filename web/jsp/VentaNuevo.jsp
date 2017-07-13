@@ -30,56 +30,62 @@
                         <div class="col-md-12">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> REALIZAR VENTAS</h3>
+                                    <h3 class="panel-title"><span class="glyphicon glyphicon-briefcase"></span> VENTA - NUEVO REGISTRO DE VENTA</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-7">
                                             <div class="row">
-                                                <div class="col-md-1 col-md-offset-1">
-                                                    <h5><b>Dni:</b></h5>
+                                                <div class="col-md-2 col-md-offset-1" style="width: 100px">
+                                                    <label for="lblDniRuc">DNI / RUC:</label>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" class="form-control" placeholder="">
+                                                    <input type="text" class="form-control" placeholder="" name="txtDniRuc" id="txtDniRuc"/>
                                                 </div>
-                                                <div class="form-group col-md-5">
+                                                <div class="col-md-2" style="width: 80px">
+                                                    <label for="lblCodigo">CÓDIGO:</label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" placeholder="" name="txtCodigo" id="txtCodigo"/>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-2 col-md-offset-1" style="width: 100px">
+                                                    <label for="lblCliente">CLIENTE:</label>
+                                                </div>
+                                                <div class="form-group col-md-7">
                                                     <div class="inner-addon left-addon">
                                                         <i class="glyphicon glyphicon-search"></i>
-                                                        <input type="text" class="form-control" placeholder="Buscar Cliente" />
+                                                        <input type="text" class="form-control" placeholder="Buscar Cliente" name="txtcli" id="txtcli"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <br>
                                             <div class="row">
-                                                <div class="col-md-2 col-md-offset-1">
-                                                    <h5><b>Cliente:</b></h5>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control" placeholder="">
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="row">
-                                                <div class="col-md-2 col-md-offset-1">
-                                                    <h5><b>Dirección:</b></h5>
+                                                <div class="col-md-2 col-md-offset-1" style="width: 100px">
+                                                    <label for="lblCliente">DIRECCIÓN:</label>
                                                 </div>
                                                 <div class="col-md-7">
-                                                    <input type="text" class="form-control" placeholder="">
+                                                    <input type="text" class="form-control" placeholder="" name="txtDireccion" id="txtDireccion">
                                                 </div>
                                             </div>
                                             <br>
                                             <div class="row">
-                                                <div class="col-md-1 col-md-offset-1">
-                                                    <h5><b>Tipo:</b></h5>
+                                                <div class="col-md-4 col-md-offset-1" style="width: 180px; background-position: center">
+                                                    <label for="lbltipDoc">TIPO DOCUMENTO:</label>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <select class="form-control">
-                                                        <option>Natural</option>
-                                                        <option>Juridica</option>
+                                                <div class="col-md-5" style="margin-left: 10px">
+                                                    <select class="form-control" name="ddltipDoc" id="ddltipDoc">
+                                                        <option value="0" selected="selected">Selecciona un item</option>
+                                                        <option value="1">FACTURA DE VENTA</option>
+                                                        <option value="2">BOLETA DE VENTA</option>
                                                     </select>
                                                 </div>
-                                                <div class="col-md-2" style="width:80px">
-                                                    <h5><b>Fecha:</b></h5>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-2 col-md-offset-1" style="width:100px">
+                                                    <label for="lblFecha">FECHA:</label>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
@@ -102,8 +108,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-7 col-md-offset-3">
-                                                            <h4><b>BOLETA DE VENTA</b></h4>
+                                                        <div class="col-md-7 col-md-offset-1">
+                                                            <input type="text" placeholder="" name="txtFacBol" id="txtFacBol" style="font-size: 2em; text-align: center" value=""/>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -132,48 +138,58 @@
                     </div>
                     
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-primary">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-md-1 col-md-offset-1">
-                                            <h5><b>Marca:</b></h5>
+                        <form onsubmit="addAutomovil(event)">
+                            <div class="col-md-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-2" style="width: 80px ;margin-left: 80px">
+                                                <label for="lblCodAutom">CÓDIGO:</label>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" placeholder="" name="txtCodAutom" id="txtCodAutom"/>
+                                            </div>
                                         </div>
-                                        <div class="col-md-2">
-                                            <select class="form-control">
-                                                <option>Seleccione</option>
-                                                <option>Toyota</option>
-                                            </select>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-1" style="margin-left: 80px">
+                                                <label for="lblMarca">MARCA:</label>
+                                            </div>
+                                            <div class="col-md-3" style="width: 200px">
+                                                <select class="form-control" name="ddlMarca" id="ddlMarca">
+
+                                                </select>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <label for="lblModelo">MODELO:</label>
+                                            </div>
+                                            <div class="col-md-6" style="margin-left: 20px">
+                                                <input type="text" class="form-control" placeholder="" name="txtModelo" id="txtModelo">
+                                            </div>
                                         </div>
-                                        <div class="col-md-1 col-md-offset-1">
-                                            <h5><b>Modelo:</b></h5>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" class="form-control" placeholder="">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-md-1 col-md-offset-1">
-                                            <h5><b>Precio:</b></h5>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="text" class="form-control" placeholder="">
-                                        </div>
-                                        <div class="col-md-1 col-md-offset-1">
-                                            <h5><b>Cantidad:</b></h5>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input type="text" class="form-control" placeholder="">
-                                        </div>
-                                        <div class="col-md-2 col-md-offset-1">
-                                            <button class="btn btn-primary" type="submit">
-                                            <span class="glyphicon glyphicon-shopping-cart"></span> Agregar al Carrito</button>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-1 col-md-offset-1">
+                                                <label for="lblPrecio">PRECIO:</label>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <input type="text" class="form-control" placeholder="" name="txtPrecio" id="txtPrecio">
+                                            </div>
+                                            <div class="col-md-1" style="margin-left: 42px">
+                                                <label for="lblCantidad">CANTIDAD:</label>
+                                            </div>
+                                            <div class="col-md-2" style="margin-left: 22px">
+                                                <input type="text" class="form-control" placeholder="" name="txtCantidad" id="txtCantidad">
+                                            </div>
+                                            <div class="col-md-2 col-md-offset-1">
+                                                <button class="btn btn-primary" type="submit" id="btnCarrito" name="btnCarrito">
+                                                <span class="glyphicon glyphicon-shopping-cart"></span> Agregar al Carrito</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>    
                     </div>
                     
                     <div class="row">
@@ -242,5 +258,6 @@
         <%@include file="/WEB-INF/jspf/foot.jspf" %> 
         </div>
         <%@include file="/WEB-INF/jspf/js2.jspf" %>
+        <script src="../js/venta.js" type="text/javascript"></script>
     </body>
 </html>

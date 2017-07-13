@@ -1,6 +1,3 @@
-//<![CDATA[
-/*global $ */
-/*jslint browser: true */
 $(document).ready(function () {
  
     $('#bt0').removeClass('active');
@@ -18,62 +15,57 @@ $(document).ready(function () {
         locale: 'es'
     });
     
-    $.jgrid = $.jgrid || {};
-    $.jgrid.no_legacy_api = true;
-        
-    "use strict";
-    var mydata = [
-            { id: "A001",  Marca: "Hyundai", Modelo: "Corolla",Color: "blanco", Precio: "$20 000", Stock: "54", Estado: "Activo"},
-            { id: "A002",  Marca: "Toyota",  Modelo: "Yaris",  Color: "plomo",  Precio: "$50 000", Stock: "45", Estado: "Activo"},
-            { id: "A003",  Marca: "Nissan",  Modelo: "RAV 4",  Color: "rojo",   Precio: "$45 000", Stock: "50", Estado: "Activo"}
-                
-    ],
-    $grid = $("#listar"),
-    initDateEdit = function (elem) {
-        $(elem).datepicker({
-            dateFormat: "dd-M-yy",
-            autoSize: true,
-            changeYear: true,
-            changeMonth: true,
-            showButtonPanel: true,
-            showWeek: true
-        });
-    },
-    initDateSearch = function (elem) {
-        setTimeout(function () {
-            initDateEdit(elem);
-        }, 100);
-    };
+    $("#grid").jqGrid({
+        datatype: function () {
+            $.ajax({
+                url: 'ServletGrid',
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                complete: function (jsondata, stat) {
+                    if (stat == "success")
+                        jQuery("#grid")[0].addJSONData(JSON.parse(jsondata.responseText));
+                    else
+                        alert(JSON.parse(jsondata.responseText).Message);
+                }
+            });
+        },
+        jsonReader: {
+            root: "rows",
+            page: "page",
+            total: "total",
+            records: "records",
+            repeatitems: true,
+            cell: "cell",
+            id: "id"
+           /* subgrid: {
+                root: "Items",
+                repeatitems: true,
+                cell: "Row"
+            }*/
+        },
+        colNames: ['Departamentos'],
+        colModel: [{ index: 'deps', width: 300, align: 'Center', name: 'Departamentos', editable: true, editoptions: { readonly: false, size: 20 },
+        formoptions: { label: "Departamentos", elmprefix: "(*)" }, editrules: { required: true } }],
+            pager: "#pager", 
+            loadtext: 'Cargando datos...',
+            recordtext: "{0} - {1} de {2} elementos",
+            emptyrecords: 'No hay resultados',
+            pgtext: 'Pág: {0} de {1}', 
+            rowNum: "10", // PageSize.
+            rowList: [10, 20, 30], //Variable PageSize DropDownList.
+            viewrecords: true, //Show the RecordCount in the pager.
+            multiselect: true,
+            sortname: "Name", //Default SortColumn
+            sortorder: "asc", //Default SortOrder.
+            width: "750",
+            height: "300",
+            loadonce: true,
+            caption: "Administrar Departamentos"
+    });
 
-    $grid.jqGrid({
-        data: mydata,
-        colNames: ["Código", "Marca", "Modelo", "Color", "Precio", "Stock", "Estado", "Opciones"],
-        colModel: [
-            { name: "id", align: "center", width: 92, editrules: {required: true} },
-            { name: "Marca", align: "center", width: 92, editrules: {required: true} },
-            { name: "Modelo", align: "center", width: 92, editrules: {required: true} },
-            { name: "Color", align: "center", width: 92, editrules: {required: true} },
-            { name: "Precio", align: "center", width: 92,editrules: {required: true} },
-            { name: "Stock", align: "center", width: 92, template: "number", editrules: {required: true} },
-            { name: "Estado", align: "center", width: 92, editrules: {required: true} },
-            { name: "act", template: "actions", align: "left", width: 65 },
-        ],
-        cmTemplate: { editable: true, autoResizable: true },
-        iconSet: "fontAwesome",
-        rowNum: 10,
-        autoResizing: { compact: true },
-        rowList: [5, 10, 20, "10000:All"],
-        viewrecords: true,
-        pager: true,
-        toppager: true,
-        inlineEditing: { keys: true, position: "afterSelected" },
-        rownumbers: true,
-        sortname: "invdate",
-        sortorder: "desc",
-        caption: "Lista de Automoviles"
-            
-    }).jqGrid("gridResize");
-    
+    jQuery("#grid").jqGrid('navGrid', '#pager', { edit: true, add: true, search: false, del: true }, null, { url: '../Handlers/ManejadorDeEstados.ashx', mtype: 'get' },
+    { width: 500, url: 'Handler1.ashx', mtype: 'get' });
     
     $('.nav li a').click(function (e) {
         var $parent = $(this).parent();
@@ -108,9 +100,102 @@ $(document).ready(function () {
     var marca = $('#txtIdMarca').val();
     $("#marcas option[value="+ marca +"]").attr("selected",true);
     
-    
-    
-    
+    LlenarComboMarcas();
+    function LlenarComboMarcas(){
+        $.ajax({
+            url: 'ServletMarcaListarTodosdll',
+            type: 'POST',
+            datatype: 'JSON',
+            error: function(jqXHR, textStatus, errorThrown){ 
+                //alert("error ==>" + jqXHR.statusText); 
+                //alert(textStatus);
+                //alert("excepcion ==>" + errorThrown); 
+            }, 
+            statusCode: {
+                404: function() {
+                    console.log('Pagina NO encontrada');
+                },
+                500: function(){
+                    console.log('Error en el servidor');
+                }
+            },
+            success:function(r){
+            //alert(JSON.stringify(r));
+            var json = eval('('+r+')');
+            var combo = document.getElementById("ddlMarca");
+            combo.options[0] = new Option('Selecciona un item', '');
+                for(var i=0;i<json.length;i++){
+                        combo.options[combo.length] = new Option(json[i].NOMBRE, json[i].ID_MARCA);
+                    }
+                }
+        });
+        
+    }     
+
+    FiltrarModelos();
+    function FiltrarModelos(){
+        $("#txtModelo").autocomplete({
+                source : function(request, response) {
+                    $.ajax({
+                        url : '../ServletClienteListarModelos',
+                        type : 'POST',
+                        datatype: 'JSON',
+                        data: { ID_MARCA: $('#ddlMarca').val(),
+                                MODELO: $('#txtModelo').val()
+                        },
+                        success: function(data) {
+                        //alert(data);
+                        //alert(JSON.stringify(data));
+                        //console.log(data);
+                        var json = eval('('+data+')');
+                        //alert(json);
+                        response($.map(json, function (item) {
+                                return {
+                                        label: item.MODELO,
+                                        value: item.ID_AUTOMOVIL,
+                                        ID_AUTOMOVIL: item.ID_AUTOMOVIL,
+                                        PRECIO: item.PRECIO
+                                };
+			}));
+                        },
+                        error: function(jqXHR, textStatus, errorThrown){
+                        alert("error ==>" + jqXHR.statusText); 
+                        alert(textStatus);
+                        alert("excepcion ==>" + errorThrown);     
+                        console.log( textStatus);
+                        }
+                    });
+                },
+                minLength: 1,
+                scroll: true,
+                highlight: false,
+                focus: function(event, ui) {
+                    // prevent autocomplete from updating the textbox
+                    event.preventDefault();
+                    // manually update the textbox
+                    $('#txtModelo').val(ui.item.label);
+                    return false;
+                },
+                // Once a value in the drop down list is selected, do the following:
+                select: function(event, ui) {
+                    // prevent autocomplete from updating the textbox
+                    event.preventDefault();
+                    // place the person.given_name value into the textfield called 'select_origin'...
+                    $('#txtcli').val(ui.item.label);
+                    // and place the person.id into the hidden textfield called 'link_origin_id'. 
+                    $('#txtCodAutom').val(ui.item.value);
+                    $('#txtPrecio').val(ui.item.PRECIO);
+                    return false;
+                },
+                open: function() {
+                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+                },
+                close: function() {
+                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+                }
+        });    
+    }    
+  
 });
 //]]>
     

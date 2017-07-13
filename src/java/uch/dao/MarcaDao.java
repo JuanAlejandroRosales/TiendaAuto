@@ -20,10 +20,10 @@ public class MarcaDao {
             ResultSet rs = cstm.executeQuery();
             while (rs.next()) {
                 MarcaBean t = new MarcaBean();
-                t.setCodigo(rs.getString("codigo"));
-                t.setNombre(rs.getString("marca"));
-                t.setNacionalidad(rs.getString("modelo"));
-                t.setEstado(rs.getString("estado"));
+                t.setID_MARCA(rs.getString("ID_MARCA"));
+                t.setNOMBRE(rs.getString("NOMBRE"));
+                t.setNACIONALIDAD(rs.getString("NACIONALIDAD"));
+                t.setESTADO(rs.getString("ESTADO"));
                 lista.add(t);
             }
             cstm.close();
@@ -43,8 +43,8 @@ public class MarcaDao {
             ResultSet rs = cstm.executeQuery();
             while (rs.next()) {
                 MarcaBean t = new MarcaBean();
-                t.setCodigo(rs.getString("ID_MARCA"));
-                t.setNombre(rs.getString("NOMBRE"));
+                t.setID_MARCA(rs.getString("ID_MARCA"));
+                t.setNOMBRE(rs.getString("NOMBRE"));
                 lista.add(t);
             }
             cstm.close();
@@ -66,9 +66,9 @@ public class MarcaDao {
             ResultSet rs = cstm.executeQuery();
             while (rs.next()) {
                 MarcaBean t = new MarcaBean();
-                t.setCodigo(rs.getString("codigo"));
-                t.setNombre(rs.getString("marca"));
-                t.setNacionalidad(rs.getString("modelo"));
+                t.setID_MARCA(rs.getString("ID_MARCA"));
+                t.setNOMBRE(rs.getString("NOMBRE"));
+                t.setNACIONALIDAD(rs.getString("NACIONALIDAD"));
                 lista.add(t);
             }
             cstm.close();
@@ -127,18 +127,18 @@ public class MarcaDao {
         return totalPaginas;
     }
 
-    public boolean Insertar(MarcaBean auto) throws SQLException {
+    public boolean Insertar(MarcaBean marca) throws SQLException {
         Connection cn = null;        
         boolean rpta = false;
         try {            
             cn = ConexionBD.getConnection();
             String sql = "{call USP_INSERTAR_AUTO(?,?,?,?,?,?,?,?)}";
             CallableStatement cstm = cn.prepareCall(sql);
-            cstm.setString(1, auto.getCodigo());
-            cstm.setString(2, auto.getNombre());
-            cstm.setString(3, auto.getNacionalidad());
-            cstm.setString(4, auto.getEstado());
-            cstm.setString(5, auto.getFecha_registro());
+            cstm.setString(1, marca.getID_MARCA());
+            cstm.setString(2, marca.getNOMBRE());
+            cstm.setString(3, marca.getNACIONALIDAD());
+            cstm.setString(4, marca.getESTADO());
+            cstm.setString(5, marca.getFECHA_REGISTRO());
             rpta = cstm.executeUpdate() == 1 ? true : false;
             cstm.close();
         } catch (SQLException e) {
@@ -162,9 +162,9 @@ public class MarcaDao {
              cstm.setInt(1, Id);
             ResultSet rs = cstm.executeQuery();
             while (rs.next()) {                
-                auto.setCodigo(rs.getString("codigo"));
-                auto.setNombre(rs.getString("marca"));
-                auto.setNacionalidad(rs.getString("modelo"));
+                auto.setID_MARCA(rs.getString("ID_MARCA"));
+                auto.setNOMBRE(rs.getString("NOMBRE"));
+                auto.setNACIONALIDAD(rs.getString("NACIONALIDAD"));
             }
             cstm.close();
         } catch (SQLException e1) {
@@ -185,9 +185,9 @@ public class MarcaDao {
             cn = ConexionBD.getConnection();
             String sql = "{call Auto(?,?,?,?,?,?)}";
             CallableStatement cstm = cn.prepareCall(sql);
-            cstm.setString(1,auto.getCodigo());
-            cstm.setString(2, auto.getNombre());
-            cstm.setString(3, auto.getNacionalidad());
+            cstm.setString(1,auto.getID_MARCA());
+            cstm.setString(2, auto.getNOMBRE());
+            cstm.setString(3, auto.getNACIONALIDAD());
             rpta = cstm.executeUpdate() == 1 ? true : false;
             cstm.close();
         } catch (SQLException e) {

@@ -3,6 +3,7 @@ package uch.model;
 import java.io.Serializable;
 
 public class ClienteBean implements Serializable{
+
     private String ID_CLIENTE;
     private String PRI_NOMBRE;
     private String SEG_NOMBRE;
@@ -26,6 +27,8 @@ public class ClienteBean implements Serializable{
     private String ESTADO;
     private String FECHA_REGISTRO;
     private String USUARIO_REGISTRO;
+    private String NOMBRES_RAZSOC;
+    private String DNIRUC;
     
     public ClienteBean(){    
     }
@@ -212,5 +215,21 @@ public class ClienteBean implements Serializable{
 
     public void setUSUARIO_REGISTRO(String USUARIO_REGISTRO) {
         this.USUARIO_REGISTRO = USUARIO_REGISTRO;
-    }     
+    }
+    
+    public String getNOMBRES_RAZSOC() {
+        return NOMBRES_RAZSOC;
+    }
+
+    public void setNOMBRES_RAZSOC(String NOMBRES_RAZSOC) {
+        this.NOMBRES_RAZSOC = NOMBRES_RAZSOC;
+    }
+
+    public String getDNIRUC() {
+        return DNIRUC;
+    }
+
+    public void setDNIRUC(String DNIRUC) {
+        this.DNIRUC = DNIRUC;
+    }
 }

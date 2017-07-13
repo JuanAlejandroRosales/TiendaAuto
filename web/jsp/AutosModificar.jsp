@@ -46,14 +46,14 @@
                                                                class="form-control" 
                                                                id="txtCodigo" 
                                                                name="txtCodigo"
-                                                               value="${requestScope.objeto.codigo}"
+                                                               value="${requestScope.objeto.ID_AUTOMOVIL}"
                                                                disabled>
                                                     </div>
                                                     <div class="col-md-1">
                                                         <input  type="hidden" 
                                                                 id="txtCodigoh" 
                                                                 name="txtCodigoh" 
-                                                                value="${requestScope.objeto.codigo}">
+                                                                value="${requestScope.objeto.ID_AUTOMOVIL}">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -73,7 +73,7 @@
                                                         <input  type="hidden" 
                                                                 id="txtIdMarca" 
                                                                 name="txtIdMarca" 
-                                                                value="${requestScope.objeto.marca}">
+                                                                value="${requestScope.objeto.ID_MARCA}">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -86,7 +86,7 @@
                                                                class="form-control" 
                                                                id="txtModelo" 
                                                                name="txtModelo"
-                                                               value="${requestScope.objeto.modelo}">
+                                                               value="${requestScope.objeto.MODELO}">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -99,7 +99,7 @@
                                                                class="form-control" 
                                                                id="txtColor" 
                                                                name="txtColor"
-                                                               value="${requestScope.objeto.color}">
+                                                               value="${requestScope.objeto.COLOR}">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -111,7 +111,7 @@
                                                         <input type="text" 
                                                                class="form-control" 
                                                                id="txtPrecio" name="txtPrecio"
-                                                               value="${requestScope.objeto.precio}">
+                                                               value="${requestScope.objeto.PRECIO}">
                                                     </div>
                                                 </div>
                                                 <br>
@@ -124,7 +124,7 @@
                                                                class="form-control" 
                                                                id="txtStock" 
                                                                name="txtStock"
-                                                               value="${requestScope.objeto.stock}">
+                                                               value="${requestScope.objeto.STOCK}">
                                                     </div>
                                                 </div>
                                             </div>
@@ -145,7 +145,7 @@
                                                             <div class="panel-body">
                                                                 <div class="imgnodisp">
                                                                     <output id="list" 
-                                                                        style="background-image: url('./fotos/COD_${requestScope.objeto.codigo}.jpg');
+                                                                        style="background-image: url('./fotos/COD_${requestScope.objeto.ID_AUTOMOVIL}.jpg');
                                                                                 width:450px; 
                                                                                 height:320px;
                                                                                 background-size: 450px 320px;

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>http://stackoverflow.com/q/29729911/315935</title>
     <meta name="author" content="Oleg Kiriljuk">
+    <script src="js/jquery-3.2.1/jquery-3.2.1.js" type="text/javascript"></script>
+    <script src="js/jquery-ui-1.12.1/jquery-ui.js" type="text/javascript"></script>
     <link href="css/jquery-ui_1.12.1.css" rel="stylesheet" type="text/css"/>
     <link href="css/bootstrap-3.3.7.css" rel="stylesheet" type="text/css"/>
     <link href="css/font-awesome_4.7.0.css" rel="stylesheet" type="text/css"/>
@@ -133,6 +135,14 @@
 </head>
 
 <body>
+    <div class="row">
+                                                <div class="col-md-2 col-md-offset-1">
+                                                    <h5><b>Cliente:</b></h5>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" class="form-control" placeholder="" name="txtcli" id="txtcli">
+                                                </div>
+                                            </div>
     
     <div class="container" style="padding-top: 1em;">
   <div class="btn-group-vertical">
@@ -207,6 +217,57 @@
             $(function () {
                 $('#datetimepicker1').datetimepicker();
             });
+            FiltrarNombresRazSoc();
+    
+    function FiltrarNombresRazSoc(){
+        $("#txtcli").autocomplete({
+                source : function(request, response) {
+                    $.ajax({
+                        url : '../ServletClienteListarNombresRazSoc',
+                        type : 'POST',
+                        datatype: 'JSON',
+                        data : {
+                        term : request.term
+                        },
+                        success: function(data) {
+                        //alert(data);
+                        //alert(JSON.stringify(data));
+                        //console.log(data);
+                        var json = eval('('+data+')');
+                        //alert(json);
+                        response($.map(json, function (item) {
+                                return {
+                                        label: item.NOMBRES_RAZSOC,
+                                        value: item.ID_CLIENTE
+                                };
+			}));
+                        },
+                        error: function(jqXHR, textStatus, errorThrown){
+                        alert("error ==>" + jqXHR.statusText); 
+                        alert(textStatus);
+                        alert("excepcion ==>" + errorThrown);     
+                        console.log( textStatus);
+                        }
+                    });
+                },
+                minLength: 1,
+                scroll: true,
+                highlight: false,
+                focus: function(event, ui) {
+                    $('#txtcli').val(ui.item.label);
+                    return false;
+                },
+                // Once a value in the drop down list is selected, do the following:
+                select: function(event, ui) {
+                    event.preventDefault();
+                    // place the person.given_name value into the textfield called 'select_origin'...
+                    $('#txtcli').val(ui.item.label);
+                    // and place the person.id into the hidden textfield called 'link_origin_id'. 
+                    //$('#link_origin_id').val(ui.item.value);
+                    return false;
+                }
+        });    
+    }
         </script>
     </div>
 </div>

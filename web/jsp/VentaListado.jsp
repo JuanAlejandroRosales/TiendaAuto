@@ -22,18 +22,18 @@
             </div>
             <br>
             <div class="row">
-                <div class="col-md-3" style="width: 250px">
+                <div class="col-md-2">
                     <%@include file="/WEB-INF/jspf/menu3.jspf" %>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <br>
                     <div class="row">
-                        <div class="col-md-2" style="margin-left: 15px">
+                        <div class="col-md-2 col-md-offset-1">
                             <p>
-                                <a href="./ServletAutoVentanaNuevo">
+                                <a href="./VentaNuevo.jsp">
                                     <button class="btn btn-default" >
                                         <span class="glyphicon glyphicon-plus"></span>
-                                    Nuevo Auto
+                                    Nuevo Venta
                                     </button>
                                 </a>
                             </p>
@@ -41,7 +41,7 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-md-1" style="margin-left: 10px">
+                        <div class="col-md-1 col-md-offset-1">
                             <h5><b>Mostrar</b></h5>
                         </div>
                         <div class="col-md-1">
@@ -55,10 +55,10 @@
                                 <option id="op6" value="./ServletAutoListarTodos">Todo</option>
                             </select>
                         </div>
-                        <div class="col-md-1" style="margin-left: 5px">
+                        <div class="col-md-1">
                             <h5><b>Elementos</b></h5>
                         </div>
-                        <div class="col-md-2 col-md-offset-4" style="width:110px">
+                        <div class="col-md-2 col-md-offset-3" style="width:110px">
                             <label class="control-label">Buscar por</label>
                         </div>
                         <div class="form-group col-md-3">
@@ -75,12 +75,11 @@
                                 value="${requestScope.value}">
                     </div>
                     <div class="row">
-                        <div class="col-md-12" style="margin-left: 1px">
-                            <%@include file="/WEB-INF/jspf/newjsp.jspf" %>
+                        <div class="col-md-10 col-md-offset-1">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-2" style="width:128px; margin-left: 10px">
+                        <div class="col-md-2 col-md-offset-1" style="width:128px">
                             <h5><b>Mostrando de</b></h5>
                         </div>
                         <div class="col-md-1" style="width:65px">
@@ -96,7 +95,7 @@
                             <h5><b>elementos</b></h5>
                         </div>
                         
-                        <div class="col-md-1 " style="width:60px; margin-left: 55px">
+                        <div class="col-md-1 col-md-offset-1" style="width:60px">
                             <br>
                             <p> 
                                 <a href="./ServletAutoPaginar?paginaActual=${paginaInicial}">
@@ -145,4 +144,3 @@
         
     </body>
 </html>
-
