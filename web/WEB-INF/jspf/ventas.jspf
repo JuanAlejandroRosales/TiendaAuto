@@ -3,20 +3,32 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="" style="padding-top: 1em;">
     <table class="table table-bordered table table-hover" style="width:940px" id="tblventas">
-  <thead>
-    <tr>
-      <th>ITEM</th>
-      <th>MARCA</th>
-      <th>MODELO</th>
-      <th>PPRECIO</th>
-      <th>CANTIDAD</th>
-      <th>IGV</th>
-      <th>IMPORTE</th>
-      <th>OPCIONES</th>
-    </tr>
-  </thead>
-      <tbody>
+        <thead>
+            <tr>
+              <th>ITEM</th>
+              <th>MARCA</th>
+              <th>MODELO</th>
+              <th>PPRECIO</th>
+              <th>CANTIDAD</th>
+              <th>IGV</th>
+              <th>IMPORTE</th>
+              <th>OPCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
             
-    </tbody>
+        </tbody>
+        <tfoot>
+            <tr>
+              <th>TOTAL</th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+        </tfoot>
 </table>
 </div>

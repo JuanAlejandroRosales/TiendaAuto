@@ -128,6 +128,7 @@ function addAutomovil(e) {
     });
     $('#tblventas tbody').append(row);
     clean();
+    SumarColumna('tblventas', 6);
 }
 
 function createRow(data) {
@@ -155,9 +156,32 @@ function clean() {
   //$('#txtCantidad').focus();
 }
 
+//Permite Borrar un elemto del carrito
 $(function () {
     $(document).on('click', '.borrar', function (event) {
         event.preventDefault();
         $(this).closest('tr').remove();
     });
 });
+
+
+
+function SumarColumna(grilla, columna) {
+
+        var resultVal = 0.0; 
+            
+        $("#" + grilla + " tbody tr").not(':first').not(':last').each(
+            function() {
+            
+                var celdaValor = $(this).find('td:eq(' + columna + ')');
+               
+                if (celdaValor.val() != null)
+                        resultVal += parseFloat(celdaValor.html().replace(',','.'));
+                        
+            } //function
+            
+        ) //each
+       
+        $("#" + grilla + " tbody tr:last td:eq(" + columna + ")").html(resultVal.toFixed(2).toString().replace('.',','));   
+
+}   
