@@ -159,9 +159,9 @@ $(document).ready(function () {
 			}));
                         },
                         error: function(jqXHR, textStatus, errorThrown){
-                        alert("error ==>" + jqXHR.statusText); 
-                        alert(textStatus);
-                        alert("excepcion ==>" + errorThrown);     
+                        //alert("error ==>" + jqXHR.statusText); 
+                        //alert(textStatus);
+                        //alert("excepcion ==>" + errorThrown);     
                         console.log( textStatus);
                         }
                     });

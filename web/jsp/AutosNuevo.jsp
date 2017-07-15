@@ -132,6 +132,7 @@
         <%@include file="/WEB-INF/jspf/foot.jspf" %> 
         </div>
         <%@include file="/WEB-INF/jspf/js2.jspf" %>
+        <script src="./js/automovil.js" type="text/javascript"></script>
     </body>
 </html>
 
